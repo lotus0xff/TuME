@@ -63,6 +63,8 @@ private slots:
 
     void on__actAbout_Qt_triggered();
 
+    void on__actDisLog_toggled(bool arg1);
+
 private:
     void setupConnections();
     void setupStatusBar();

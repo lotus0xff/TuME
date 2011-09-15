@@ -158,12 +158,20 @@ Machine::RunResult Machine::exec(quint64 steps)
             if (_program.contains(id))
             {
                 const Production &p = _program.value(id);
-                if (_log)
+
+                // Perform logging (don't be confused, this
+                // logic doesn't relate to machine operation.
+                if (_log && !(_log->size() > 1 &&
+                              Machine::isSpecial(_log->last().cmd) &&
+                              _log->at(_log->size()-2).cmd == p))
                 {
                     logItem.time = t;
                     logItem.cmd = p;
+                    if (!_log->isEmpty() && _log->last().cmd == logItem.cmd)
+                        Machine::setSpecial(logItem.cmd);
                     _log->append(logItem);
                 }
+
                 *_cursor = p.outSymbol;
                 switch (p.moveDir)
                 {

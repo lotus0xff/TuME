@@ -31,9 +31,11 @@ struct Production
     HeadMoveDir moveDir;
     state_t outState;
 
-    bool operator ==(const Production &pr)
+    bool operator ==(const Production &pr) const
     {
-        return inState == pr.inState && inSymbol == pr.inSymbol;
+        return inState == pr.inState && inSymbol == pr.inSymbol &&
+               outSymbol == pr.outSymbol && outState == pr.outState &&
+               moveDir == pr.moveDir;
     }
 
     static quint64 identity(const Production &p)
@@ -48,11 +50,6 @@ struct Production
         quint64 res = static_cast<quint64>(state) & Q_INT64_C(0xFFFFFFFF);
         res |= (static_cast<quint64>(symbol) & Q_INT64_C(0xFFFFFFFF)) << 32;
         return res;
-    }
-
-    operator quint64() const
-    {
-        return identity(*this);
     }
 };
 
@@ -522,6 +519,30 @@ public:
         return _log;
     }
     bool currentProduction(Production &prd);
+
+    /*! \brief Check whether production has special meaning or not.
+     *
+     * Productions with special meaning are not supposed to be ever
+     * used in machine actions, but rather serve as a flag.
+     * \param prd Production to check for special meaning.
+     * \return true, if specified production has special meaning.
+     */
+    static bool isSpecial(const Production &prd)
+    {
+        return prd.inSymbol == SYMBOL_ILLEGAL &&
+               prd.inState == STATE_ILLEGAL;
+    }
+    /*! \brief Set a production to the "special" state.
+     *
+     * After being passed to this function, production
+     * becomes a special one and will never be activated.
+     * \param prd Production to set to special state.
+     */
+    static void setSpecial(Production &prd)
+    {
+        prd.inState = prd.outState = STATE_ILLEGAL;
+        prd.inSymbol = prd.outSymbol = SYMBOL_ILLEGAL;
+    }
     void reset(ResetMethod method = RM_SOFT);
 
     /// Execute some instructions in current thread, allowing user

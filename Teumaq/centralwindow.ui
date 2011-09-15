@@ -755,8 +755,8 @@
             <rect>
              <x>0</x>
              <y>0</y>
-             <width>611</width>
-             <height>399</height>
+             <width>234</width>
+             <height>106</height>
             </rect>
            </property>
            <attribute name="label">
@@ -1024,6 +1024,13 @@
     <addaction name="separator"/>
     <addaction name="_actExit"/>
    </widget>
+   <widget class="QMenu" name="menuHelp">
+    <property name="title">
+     <string>Help</string>
+    </property>
+    <addaction name="_actAbout"/>
+    <addaction name="_actAbout_Qt"/>
+   </widget>
    <widget class="QMenu" name="menuEmulation">
     <property name="title">
      <string>Emulation</string>
@@ -1033,13 +1040,7 @@
     <addaction name="_actStart"/>
     <addaction name="_actPause"/>
     <addaction name="_actStepFwd"/>
-   </widget>
-   <widget class="QMenu" name="menuHelp">
-    <property name="title">
-     <string>Help</string>
-    </property>
-    <addaction name="_actAbout"/>
-    <addaction name="_actAbout_Qt"/>
+    <addaction name="_actDisLog"/>
    </widget>
    <addaction name="menuFile"/>
    <addaction name="menuEmulation"/>
@@ -1120,6 +1121,9 @@
    </property>
   </action>
   <action name="_actReset">
+   <property name="checkable">
+    <bool>false</bool>
+   </property>
    <property name="icon">
     <iconset resource="resources/rsrc.qrc">
      <normaloff>:/button/stop</normaloff>:/button/stop</iconset>
@@ -1161,6 +1165,18 @@
   <action name="_actAbout_Qt">
    <property name="text">
     <string>About Qt</string>
+   </property>
+  </action>
+  <action name="_actDisLog">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="icon">
+    <iconset resource="resources/rsrc.qrc">
+     <normaloff>:/button/log</normaloff>:/button/log</iconset>
+   </property>
+   <property name="text">
+    <string>Log disabled</string>
    </property>
   </action>
  </widget>

@@ -645,3 +645,18 @@ void CentralWindow::on__actAbout_Qt_triggered()
 {
     qobject_cast<QApplication*>(QApplication::instance())->aboutQt();
 }
+
+void CentralWindow::on__actDisLog_toggled(bool logOff)
+{
+    if (!logOff)
+    {
+        _machine.setLog(&_machLog);
+    }
+    else
+    {
+        _machLog.clear();
+        _machine.setLog(NULL);
+    }
+    _uiTrace->setEnabled(!logOff);
+    _uiTrace->setModel(logOff ? NULL : _mdlTrace);
+}

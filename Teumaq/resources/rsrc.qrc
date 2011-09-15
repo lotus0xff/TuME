@@ -17,6 +17,7 @@
         <file alias="apply">check2.png</file>
         <file alias="clear">garbage.png</file>
         <file alias="gotocur">nav_up_green.png</file>
+        <file alias="log">notebook.png</file>
     </qresource>
     <qresource prefix="/action">
         <file alias="save">disk_yellow.png</file>

@@ -27,6 +27,8 @@ QVariant TraceTableModel::data(const QModelIndex &index, int role)
         switch (role)
         {
         case Qt::DisplayRole:
+            if (Machine::isSpecial(item.cmd))
+                return "...";
             switch (index.column())
             {
             case COL_TIME:
