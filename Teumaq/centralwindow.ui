@@ -1,0 +1,1279 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>CentralWindow</class>
+ <widget class="QMainWindow" name="CentralWindow">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>645</width>
+    <height>589</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>TuME</string>
+  </property>
+  <widget class="QWidget" name="centralwidget">
+   <layout class="QVBoxLayout" name="verticalLayout">
+    <item>
+     <widget class="QTabWidget" name="_uiSections">
+      <property name="currentIndex">
+       <number>0</number>
+      </property>
+      <widget class="QWidget" name="_uiSctEmulation">
+       <attribute name="title">
+        <string>Emulation</string>
+       </attribute>
+       <layout class="QVBoxLayout" name="verticalLayout_8">
+        <item>
+         <widget class="TapeView" name="_uiTape" native="true">
+          <property name="sizePolicy">
+           <sizepolicy hsizetype="MinimumExpanding" vsizetype="MinimumExpanding">
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QFrame" name="frame">
+          <property name="frameShape">
+           <enum>QFrame::StyledPanel</enum>
+          </property>
+          <property name="frameShadow">
+           <enum>QFrame::Raised</enum>
+          </property>
+          <layout class="QHBoxLayout" name="horizontalLayout_6">
+           <item>
+            <widget class="QPushButton" name="_uiNavBeg">
+             <property name="minimumSize">
+              <size>
+               <width>36</width>
+               <height>36</height>
+              </size>
+             </property>
+             <property name="maximumSize">
+              <size>
+               <width>36</width>
+               <height>36</height>
+              </size>
+             </property>
+             <property name="toolTip">
+              <string>Navigate to left tape border</string>
+             </property>
+             <property name="text">
+              <string/>
+             </property>
+             <property name="icon">
+              <iconset resource="resources/rsrc.qrc">
+               <normaloff>:/button/navbegin</normaloff>:/button/navbegin</iconset>
+             </property>
+             <property name="iconSize">
+              <size>
+               <width>16</width>
+               <height>16</height>
+              </size>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QPushButton" name="_uiNavBack">
+             <property name="minimumSize">
+              <size>
+               <width>36</width>
+               <height>36</height>
+              </size>
+             </property>
+             <property name="maximumSize">
+              <size>
+               <width>36</width>
+               <height>36</height>
+              </size>
+             </property>
+             <property name="toolTip">
+              <string>Navigate tape left</string>
+             </property>
+             <property name="text">
+              <string/>
+             </property>
+             <property name="icon">
+              <iconset resource="resources/rsrc.qrc">
+               <normaloff>:/button/navleft</normaloff>:/button/navleft</iconset>
+             </property>
+             <property name="iconSize">
+              <size>
+               <width>16</width>
+               <height>16</height>
+              </size>
+             </property>
+             <property name="flat">
+              <bool>false</bool>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QPushButton" name="_uiRewind">
+             <property name="sizePolicy">
+              <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
+               <horstretch>0</horstretch>
+               <verstretch>0</verstretch>
+              </sizepolicy>
+             </property>
+             <property name="minimumSize">
+              <size>
+               <width>0</width>
+               <height>0</height>
+              </size>
+             </property>
+             <property name="maximumSize">
+              <size>
+               <width>36</width>
+               <height>36</height>
+              </size>
+             </property>
+             <property name="toolTip">
+              <string>Go to cursor</string>
+             </property>
+             <property name="text">
+              <string/>
+             </property>
+             <property name="icon">
+              <iconset resource="resources/rsrc.qrc">
+               <normaloff>:/button/gotocur</normaloff>:/button/gotocur</iconset>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <spacer name="horizontalSpacer_4">
+             <property name="orientation">
+              <enum>Qt::Horizontal</enum>
+             </property>
+             <property name="sizeType">
+              <enum>QSizePolicy::MinimumExpanding</enum>
+             </property>
+             <property name="sizeHint" stdset="0">
+              <size>
+               <width>40</width>
+               <height>20</height>
+              </size>
+             </property>
+            </spacer>
+           </item>
+           <item>
+            <widget class="QPushButton" name="_uiStop">
+             <property name="minimumSize">
+              <size>
+               <width>36</width>
+               <height>36</height>
+              </size>
+             </property>
+             <property name="maximumSize">
+              <size>
+               <width>36</width>
+               <height>36</height>
+              </size>
+             </property>
+             <property name="toolTip">
+              <string>Stop / reset</string>
+             </property>
+             <property name="text">
+              <string/>
+             </property>
+             <property name="icon">
+              <iconset resource="resources/rsrc.qrc">
+               <normaloff>:/button/stop</normaloff>:/button/stop</iconset>
+             </property>
+             <property name="iconSize">
+              <size>
+               <width>16</width>
+               <height>16</height>
+              </size>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QPushButton" name="_uiPause">
+             <property name="enabled">
+              <bool>false</bool>
+             </property>
+             <property name="minimumSize">
+              <size>
+               <width>36</width>
+               <height>36</height>
+              </size>
+             </property>
+             <property name="maximumSize">
+              <size>
+               <width>36</width>
+               <height>36</height>
+              </size>
+             </property>
+             <property name="toolTip">
+              <string>Pause</string>
+             </property>
+             <property name="text">
+              <string/>
+             </property>
+             <property name="icon">
+              <iconset resource="resources/rsrc.qrc">
+               <normaloff>:/button/pause</normaloff>:/button/pause</iconset>
+             </property>
+             <property name="iconSize">
+              <size>
+               <width>16</width>
+               <height>16</height>
+              </size>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QPushButton" name="_uiRun">
+             <property name="sizePolicy">
+              <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
+               <horstretch>0</horstretch>
+               <verstretch>0</verstretch>
+              </sizepolicy>
+             </property>
+             <property name="minimumSize">
+              <size>
+               <width>36</width>
+               <height>36</height>
+              </size>
+             </property>
+             <property name="maximumSize">
+              <size>
+               <width>36</width>
+               <height>36</height>
+              </size>
+             </property>
+             <property name="toolTip">
+              <string>Run</string>
+             </property>
+             <property name="text">
+              <string/>
+             </property>
+             <property name="icon">
+              <iconset resource="resources/rsrc.qrc">
+               <normaloff>:/button/play</normaloff>:/button/play</iconset>
+             </property>
+             <property name="iconSize">
+              <size>
+               <width>16</width>
+               <height>16</height>
+              </size>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <spacer name="horizontalSpacer_6">
+             <property name="orientation">
+              <enum>Qt::Horizontal</enum>
+             </property>
+             <property name="sizeType">
+              <enum>QSizePolicy::Fixed</enum>
+             </property>
+             <property name="sizeHint" stdset="0">
+              <size>
+               <width>28</width>
+               <height>20</height>
+              </size>
+             </property>
+            </spacer>
+           </item>
+           <item>
+            <widget class="QPushButton" name="_uiStepFwd">
+             <property name="minimumSize">
+              <size>
+               <width>36</width>
+               <height>36</height>
+              </size>
+             </property>
+             <property name="maximumSize">
+              <size>
+               <width>36</width>
+               <height>36</height>
+              </size>
+             </property>
+             <property name="toolTip">
+              <string>Step forward</string>
+             </property>
+             <property name="text">
+              <string/>
+             </property>
+             <property name="icon">
+              <iconset resource="resources/rsrc.qrc">
+               <normaloff>:/button/step</normaloff>:/button/step</iconset>
+             </property>
+             <property name="iconSize">
+              <size>
+               <width>16</width>
+               <height>16</height>
+              </size>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QSpinBox" name="_uiStepCount">
+             <property name="toolTip">
+              <string>Stride size for step</string>
+             </property>
+             <property name="suffix">
+              <string/>
+             </property>
+             <property name="minimum">
+              <number>1</number>
+             </property>
+             <property name="maximum">
+              <number>10</number>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <spacer name="horizontalSpacer_5">
+             <property name="orientation">
+              <enum>Qt::Horizontal</enum>
+             </property>
+             <property name="sizeType">
+              <enum>QSizePolicy::MinimumExpanding</enum>
+             </property>
+             <property name="sizeHint" stdset="0">
+              <size>
+               <width>40</width>
+               <height>20</height>
+              </size>
+             </property>
+            </spacer>
+           </item>
+           <item>
+            <widget class="QPushButton" name="_uiNavFwd">
+             <property name="minimumSize">
+              <size>
+               <width>36</width>
+               <height>36</height>
+              </size>
+             </property>
+             <property name="maximumSize">
+              <size>
+               <width>36</width>
+               <height>36</height>
+              </size>
+             </property>
+             <property name="toolTip">
+              <string>Navigate tape right</string>
+             </property>
+             <property name="text">
+              <string/>
+             </property>
+             <property name="icon">
+              <iconset resource="resources/rsrc.qrc">
+               <normaloff>:/button/navright</normaloff>:/button/navright</iconset>
+             </property>
+             <property name="iconSize">
+              <size>
+               <width>16</width>
+               <height>16</height>
+              </size>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QPushButton" name="_uiNavEnd">
+             <property name="minimumSize">
+              <size>
+               <width>36</width>
+               <height>36</height>
+              </size>
+             </property>
+             <property name="maximumSize">
+              <size>
+               <width>36</width>
+               <height>36</height>
+              </size>
+             </property>
+             <property name="toolTip">
+              <string>Navigate to right tape border</string>
+             </property>
+             <property name="text">
+              <string/>
+             </property>
+             <property name="icon">
+              <iconset resource="resources/rsrc.qrc">
+               <normaloff>:/button/navend</normaloff>:/button/navend</iconset>
+             </property>
+             <property name="iconSize">
+              <size>
+               <width>16</width>
+               <height>16</height>
+              </size>
+             </property>
+            </widget>
+           </item>
+          </layout>
+         </widget>
+        </item>
+        <item>
+         <layout class="QHBoxLayout" name="horizontalLayout_7">
+          <item>
+           <layout class="QVBoxLayout" name="verticalLayout_5">
+            <item>
+             <widget class="QLabel" name="label_3">
+              <property name="frameShape">
+               <enum>QFrame::NoFrame</enum>
+              </property>
+              <property name="text">
+               <string>Current state</string>
+              </property>
+              <property name="alignment">
+               <set>Qt::AlignCenter</set>
+              </property>
+              <property name="buddy">
+               <cstring>_uiCurState</cstring>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QComboBox" name="_uiCurState">
+              <property name="sizePolicy">
+               <sizepolicy hsizetype="MinimumExpanding" vsizetype="Fixed">
+                <horstretch>0</horstretch>
+                <verstretch>0</verstretch>
+               </sizepolicy>
+              </property>
+              <property name="minimumSize">
+               <size>
+                <width>0</width>
+                <height>27</height>
+               </size>
+              </property>
+             </widget>
+            </item>
+           </layout>
+          </item>
+          <item>
+           <layout class="QVBoxLayout" name="verticalLayout_6">
+            <item>
+             <widget class="QLabel" name="label_5">
+              <property name="text">
+               <string>Current symbol</string>
+              </property>
+              <property name="alignment">
+               <set>Qt::AlignCenter</set>
+              </property>
+              <property name="buddy">
+               <cstring>_uiCurSym</cstring>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QComboBox" name="_uiCurSym">
+              <property name="sizePolicy">
+               <sizepolicy hsizetype="MinimumExpanding" vsizetype="Fixed">
+                <horstretch>0</horstretch>
+                <verstretch>0</verstretch>
+               </sizepolicy>
+              </property>
+              <property name="minimumSize">
+               <size>
+                <width>0</width>
+                <height>27</height>
+               </size>
+              </property>
+             </widget>
+            </item>
+           </layout>
+          </item>
+          <item>
+           <layout class="QVBoxLayout" name="verticalLayout_7">
+            <item>
+             <widget class="QLabel" name="label_7">
+              <property name="text">
+               <string>Current command</string>
+              </property>
+              <property name="alignment">
+               <set>Qt::AlignCenter</set>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QLabel" name="_uiCurCmd">
+              <property name="sizePolicy">
+               <sizepolicy hsizetype="MinimumExpanding" vsizetype="Preferred">
+                <horstretch>0</horstretch>
+                <verstretch>0</verstretch>
+               </sizepolicy>
+              </property>
+              <property name="minimumSize">
+               <size>
+                <width>0</width>
+                <height>27</height>
+               </size>
+              </property>
+              <property name="frameShape">
+               <enum>QFrame::Panel</enum>
+              </property>
+              <property name="frameShadow">
+               <enum>QFrame::Sunken</enum>
+              </property>
+              <property name="text">
+               <string/>
+              </property>
+              <property name="alignment">
+               <set>Qt::AlignCenter</set>
+              </property>
+             </widget>
+            </item>
+           </layout>
+          </item>
+         </layout>
+        </item>
+        <item>
+         <widget class="QLabel" name="label_4">
+          <property name="minimumSize">
+           <size>
+            <width>0</width>
+            <height>0</height>
+           </size>
+          </property>
+          <property name="frameShape">
+           <enum>QFrame::NoFrame</enum>
+          </property>
+          <property name="frameShadow">
+           <enum>QFrame::Plain</enum>
+          </property>
+          <property name="text">
+           <string>Execution trace</string>
+          </property>
+          <property name="alignment">
+           <set>Qt::AlignCenter</set>
+          </property>
+          <property name="margin">
+           <number>3</number>
+          </property>
+          <property name="buddy">
+           <cstring>_uiTrace</cstring>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QTableView" name="_uiTrace">
+          <property name="alternatingRowColors">
+           <bool>true</bool>
+          </property>
+          <property name="showGrid">
+           <bool>true</bool>
+          </property>
+          <attribute name="horizontalHeaderStretchLastSection">
+           <bool>true</bool>
+          </attribute>
+          <attribute name="verticalHeaderVisible">
+           <bool>false</bool>
+          </attribute>
+         </widget>
+        </item>
+       </layout>
+      </widget>
+      <widget class="QWidget" name="_uiSctProgram">
+       <attribute name="title">
+        <string>Program</string>
+       </attribute>
+       <layout class="QHBoxLayout" name="horizontalLayout">
+        <item>
+         <widget class="QToolBox" name="_uiPrgSections">
+          <property name="currentIndex">
+           <number>0</number>
+          </property>
+          <widget class="QWidget" name="pgSets">
+           <property name="geometry">
+            <rect>
+             <x>0</x>
+             <y>0</y>
+             <width>611</width>
+             <height>399</height>
+            </rect>
+           </property>
+           <attribute name="label">
+            <string>Sets</string>
+           </attribute>
+           <layout class="QHBoxLayout" name="horizontalLayout_5">
+            <item>
+             <layout class="QVBoxLayout" name="verticalLayout_4">
+              <item>
+               <widget class="QLabel" name="label">
+                <property name="text">
+                 <string>States</string>
+                </property>
+                <property name="alignment">
+                 <set>Qt::AlignCenter</set>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QListView" name="_uiSetStates"/>
+              </item>
+              <item>
+               <layout class="QHBoxLayout" name="horizontalLayout_3">
+                <property name="sizeConstraint">
+                 <enum>QLayout::SetDefaultConstraint</enum>
+                </property>
+                <item>
+                 <widget class="QPushButton" name="_uiStateRem">
+                  <property name="sizePolicy">
+                   <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
+                    <horstretch>0</horstretch>
+                    <verstretch>0</verstretch>
+                   </sizepolicy>
+                  </property>
+                  <property name="maximumSize">
+                   <size>
+                    <width>900</width>
+                    <height>900</height>
+                   </size>
+                  </property>
+                  <property name="baseSize">
+                   <size>
+                    <width>0</width>
+                    <height>0</height>
+                   </size>
+                  </property>
+                  <property name="toolTip">
+                   <string>Remove last state</string>
+                  </property>
+                  <property name="text">
+                   <string/>
+                  </property>
+                  <property name="icon">
+                   <iconset resource="resources/rsrc.qrc">
+                    <normaloff>:/button/remove</normaloff>:/button/remove</iconset>
+                  </property>
+                 </widget>
+                </item>
+                <item>
+                 <widget class="QLineEdit" name="_uiStateText"/>
+                </item>
+                <item>
+                 <widget class="QPushButton" name="_uiStateSet">
+                  <property name="toolTip">
+                   <string>Rename selected state</string>
+                  </property>
+                  <property name="text">
+                   <string/>
+                  </property>
+                  <property name="icon">
+                   <iconset resource="resources/rsrc.qrc">
+                    <normaloff>:/button/apply</normaloff>:/button/apply</iconset>
+                  </property>
+                 </widget>
+                </item>
+                <item>
+                 <widget class="QPushButton" name="_uiStateAdd">
+                  <property name="toolTip">
+                   <string>Add new state</string>
+                  </property>
+                  <property name="text">
+                   <string/>
+                  </property>
+                  <property name="icon">
+                   <iconset resource="resources/rsrc.qrc">
+                    <normaloff>:/button/add</normaloff>:/button/add</iconset>
+                  </property>
+                 </widget>
+                </item>
+               </layout>
+              </item>
+             </layout>
+            </item>
+            <item>
+             <layout class="QVBoxLayout" name="verticalLayout_3">
+              <item>
+               <widget class="QLabel" name="label_2">
+                <property name="text">
+                 <string>External alphabet</string>
+                </property>
+                <property name="alignment">
+                 <set>Qt::AlignCenter</set>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QListView" name="_uiSetSymbols"/>
+              </item>
+              <item>
+               <layout class="QHBoxLayout" name="horizontalLayout_4">
+                <item>
+                 <widget class="QPushButton" name="_uiAbcRem">
+                  <property name="toolTip">
+                   <string>Remove last symbol</string>
+                  </property>
+                  <property name="text">
+                   <string/>
+                  </property>
+                  <property name="icon">
+                   <iconset resource="resources/rsrc.qrc">
+                    <normaloff>:/button/remove</normaloff>:/button/remove</iconset>
+                  </property>
+                 </widget>
+                </item>
+                <item>
+                 <widget class="QLineEdit" name="_uiAbcText"/>
+                </item>
+                <item>
+                 <widget class="QPushButton" name="_uiAbcSet">
+                  <property name="toolTip">
+                   <string>Rename selected symbol</string>
+                  </property>
+                  <property name="text">
+                   <string/>
+                  </property>
+                  <property name="icon">
+                   <iconset resource="resources/rsrc.qrc">
+                    <normaloff>:/button/apply</normaloff>:/button/apply</iconset>
+                  </property>
+                 </widget>
+                </item>
+                <item>
+                 <widget class="QPushButton" name="_uiAbcAdd">
+                  <property name="toolTip">
+                   <string>Add new symbol</string>
+                  </property>
+                  <property name="text">
+                   <string/>
+                  </property>
+                  <property name="icon">
+                   <iconset resource="resources/rsrc.qrc">
+                    <normaloff>:/button/add</normaloff>:/button/add</iconset>
+                  </property>
+                 </widget>
+                </item>
+               </layout>
+              </item>
+             </layout>
+            </item>
+           </layout>
+          </widget>
+          <widget class="QWidget" name="pgCmds">
+           <property name="geometry">
+            <rect>
+             <x>0</x>
+             <y>0</y>
+             <width>611</width>
+             <height>399</height>
+            </rect>
+           </property>
+           <attribute name="label">
+            <string>Commands</string>
+           </attribute>
+           <layout class="QVBoxLayout" name="verticalLayout_2">
+            <item>
+             <widget class="QTableView" name="_uiProgram">
+              <property name="selectionMode">
+               <enum>QAbstractItemView::SingleSelection</enum>
+              </property>
+              <attribute name="horizontalHeaderCascadingSectionResizes">
+               <bool>true</bool>
+              </attribute>
+              <attribute name="horizontalHeaderStretchLastSection">
+               <bool>true</bool>
+              </attribute>
+              <attribute name="verticalHeaderVisible">
+               <bool>false</bool>
+              </attribute>
+              <attribute name="verticalHeaderStretchLastSection">
+               <bool>false</bool>
+              </attribute>
+             </widget>
+            </item>
+            <item>
+             <layout class="QHBoxLayout" name="horizontalLayout_2">
+              <item>
+               <widget class="QPushButton" name="_uiCmdAdd">
+                <property name="toolTip">
+                 <string>Add production</string>
+                </property>
+                <property name="text">
+                 <string/>
+                </property>
+                <property name="icon">
+                 <iconset resource="resources/rsrc.qrc">
+                  <normaloff>:/button/add</normaloff>:/button/add</iconset>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QPushButton" name="_uiCmdRem">
+                <property name="toolTip">
+                 <string>Remove production</string>
+                </property>
+                <property name="text">
+                 <string/>
+                </property>
+                <property name="icon">
+                 <iconset resource="resources/rsrc.qrc">
+                  <normaloff>:/button/remove</normaloff>:/button/remove</iconset>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <spacer name="horizontalSpacer">
+                <property name="orientation">
+                 <enum>Qt::Horizontal</enum>
+                </property>
+                <property name="sizeHint" stdset="0">
+                 <size>
+                  <width>40</width>
+                  <height>20</height>
+                 </size>
+                </property>
+               </spacer>
+              </item>
+              <item>
+               <widget class="QPushButton" name="_uiCmdApply">
+                <property name="toolTip">
+                 <string>Apply changes</string>
+                </property>
+                <property name="text">
+                 <string/>
+                </property>
+                <property name="icon">
+                 <iconset resource="resources/rsrc.qrc">
+                  <normaloff>:/button/apply</normaloff>:/button/apply</iconset>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QPushButton" name="_uiCmdClear">
+                <property name="toolTip">
+                 <string>Revert changes</string>
+                </property>
+                <property name="text">
+                 <string/>
+                </property>
+                <property name="icon">
+                 <iconset resource="resources/rsrc.qrc">
+                  <normaloff>:/button/clear</normaloff>:/button/clear</iconset>
+                </property>
+               </widget>
+              </item>
+             </layout>
+            </item>
+           </layout>
+          </widget>
+          <widget class="QWidget" name="pgTape">
+           <property name="geometry">
+            <rect>
+             <x>0</x>
+             <y>0</y>
+             <width>510</width>
+             <height>202</height>
+            </rect>
+           </property>
+           <attribute name="label">
+            <string>Tape</string>
+           </attribute>
+           <layout class="QHBoxLayout" name="horizontalLayout_10">
+            <item>
+             <widget class="QListView" name="_uiTapeList">
+              <property name="sizePolicy">
+               <sizepolicy hsizetype="MinimumExpanding" vsizetype="Minimum">
+                <horstretch>1</horstretch>
+                <verstretch>0</verstretch>
+               </sizepolicy>
+              </property>
+              <property name="flow">
+               <enum>QListView::TopToBottom</enum>
+              </property>
+              <property name="viewMode">
+               <enum>QListView::ListMode</enum>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <layout class="QVBoxLayout" name="verticalLayout_9">
+              <item>
+               <layout class="QHBoxLayout" name="horizontalLayout_8">
+                <item>
+                 <widget class="QPushButton" name="_uiTSymRem">
+                  <property name="toolTip">
+                   <string>Remove symbol</string>
+                  </property>
+                  <property name="text">
+                   <string/>
+                  </property>
+                  <property name="icon">
+                   <iconset resource="resources/rsrc.qrc">
+                    <normaloff>:/button/remove</normaloff>:/button/remove</iconset>
+                  </property>
+                 </widget>
+                </item>
+                <item>
+                 <widget class="QComboBox" name="_uiTSymSel"/>
+                </item>
+                <item>
+                 <widget class="QPushButton" name="_uiTSymSet">
+                  <property name="toolTip">
+                   <string>Set symbol</string>
+                  </property>
+                  <property name="text">
+                   <string/>
+                  </property>
+                  <property name="icon">
+                   <iconset resource="resources/rsrc.qrc">
+                    <normaloff>:/button/apply</normaloff>:/button/apply</iconset>
+                  </property>
+                 </widget>
+                </item>
+                <item>
+                 <widget class="QPushButton" name="_uiTSymAdd">
+                  <property name="toolTip">
+                   <string>Add symbol</string>
+                  </property>
+                  <property name="text">
+                   <string/>
+                  </property>
+                  <property name="icon">
+                   <iconset resource="resources/rsrc.qrc">
+                    <normaloff>:/button/add</normaloff>:/button/add</iconset>
+                  </property>
+                 </widget>
+                </item>
+               </layout>
+              </item>
+              <item>
+               <layout class="QHBoxLayout" name="horizontalLayout_9">
+                <item>
+                 <widget class="QPushButton" name="_uiUseOffset">
+                  <property name="toolTip">
+                   <string>Use list selection as offset</string>
+                  </property>
+                  <property name="text">
+                   <string/>
+                  </property>
+                  <property name="icon">
+                   <iconset resource="resources/rsrc.qrc">
+                    <normaloff>:/button/navrightm</normaloff>:/button/navrightm</iconset>
+                  </property>
+                 </widget>
+                </item>
+                <item>
+                 <widget class="QLabel" name="label_6">
+                  <property name="text">
+                   <string>Cursor offset</string>
+                  </property>
+                  <property name="alignment">
+                   <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+                  </property>
+                 </widget>
+                </item>
+                <item>
+                 <widget class="QSpinBox" name="_uiCurOffset">
+                  <property name="sizePolicy">
+                   <sizepolicy hsizetype="MinimumExpanding" vsizetype="Fixed">
+                    <horstretch>0</horstretch>
+                    <verstretch>0</verstretch>
+                   </sizepolicy>
+                  </property>
+                 </widget>
+                </item>
+               </layout>
+              </item>
+              <item>
+               <spacer name="verticalSpacer">
+                <property name="orientation">
+                 <enum>Qt::Vertical</enum>
+                </property>
+                <property name="sizeType">
+                 <enum>QSizePolicy::MinimumExpanding</enum>
+                </property>
+                <property name="sizeHint" stdset="0">
+                 <size>
+                  <width>20</width>
+                  <height>126</height>
+                 </size>
+                </property>
+               </spacer>
+              </item>
+             </layout>
+            </item>
+           </layout>
+          </widget>
+         </widget>
+        </item>
+       </layout>
+      </widget>
+     </widget>
+    </item>
+   </layout>
+  </widget>
+  <widget class="QMenuBar" name="menubar">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>645</width>
+     <height>23</height>
+    </rect>
+   </property>
+   <widget class="QMenu" name="menuFile">
+    <property name="title">
+     <string>File</string>
+    </property>
+    <addaction name="_actNew"/>
+    <addaction name="separator"/>
+    <addaction name="_actOpen"/>
+    <addaction name="_actSave"/>
+    <addaction name="_actSave_as"/>
+    <addaction name="separator"/>
+    <addaction name="_actExit"/>
+   </widget>
+   <widget class="QMenu" name="menuEmulation">
+    <property name="title">
+     <string>Emulation</string>
+    </property>
+    <addaction name="_actReset"/>
+    <addaction name="separator"/>
+    <addaction name="_actStart"/>
+    <addaction name="_actPause"/>
+    <addaction name="_actStepFwd"/>
+   </widget>
+   <widget class="QMenu" name="menuHelp">
+    <property name="title">
+     <string>Help</string>
+    </property>
+    <addaction name="_actAbout"/>
+    <addaction name="_actAbout_Qt"/>
+   </widget>
+   <addaction name="menuFile"/>
+   <addaction name="menuEmulation"/>
+   <addaction name="menuHelp"/>
+  </widget>
+  <widget class="QStatusBar" name="statusbar"/>
+  <action name="_actNew">
+   <property name="icon">
+    <iconset resource="resources/rsrc.qrc">
+     <normaloff>:/action/new</normaloff>:/action/new</iconset>
+   </property>
+   <property name="text">
+    <string>New</string>
+   </property>
+  </action>
+  <action name="_actOpen">
+   <property name="icon">
+    <iconset resource="resources/rsrc.qrc">
+     <normaloff>:/action/open</normaloff>:/action/open</iconset>
+   </property>
+   <property name="text">
+    <string>Open</string>
+   </property>
+  </action>
+  <action name="_actSave">
+   <property name="icon">
+    <iconset resource="resources/rsrc.qrc">
+     <normaloff>:/action/save</normaloff>:/action/save</iconset>
+   </property>
+   <property name="text">
+    <string>Save</string>
+   </property>
+  </action>
+  <action name="_actSave_as">
+   <property name="text">
+    <string>Save as</string>
+   </property>
+  </action>
+  <action name="_actExit">
+   <property name="icon">
+    <iconset resource="resources/rsrc.qrc">
+     <normaloff>:/action/exit</normaloff>:/action/exit</iconset>
+   </property>
+   <property name="text">
+    <string>E&amp;xit</string>
+   </property>
+  </action>
+  <action name="_actAbout">
+   <property name="checkable">
+    <bool>false</bool>
+   </property>
+   <property name="icon">
+    <iconset resource="resources/rsrc.qrc">
+     <normaloff>:/action/help</normaloff>:/action/help</iconset>
+   </property>
+   <property name="text">
+    <string>About</string>
+   </property>
+  </action>
+  <action name="actStart">
+   <property name="text">
+    <string>Reset</string>
+   </property>
+  </action>
+  <action name="actPause">
+   <property name="text">
+    <string>Start</string>
+   </property>
+  </action>
+  <action name="actPause_2">
+   <property name="text">
+    <string>Pause</string>
+   </property>
+  </action>
+  <action name="actionStep_forward">
+   <property name="text">
+    <string>Step forward</string>
+   </property>
+  </action>
+  <action name="_actReset">
+   <property name="icon">
+    <iconset resource="resources/rsrc.qrc">
+     <normaloff>:/button/stop</normaloff>:/button/stop</iconset>
+   </property>
+   <property name="text">
+    <string>Reset</string>
+   </property>
+  </action>
+  <action name="_actStart">
+   <property name="icon">
+    <iconset resource="resources/rsrc.qrc">
+     <normaloff>:/button/play</normaloff>:/button/play</iconset>
+   </property>
+   <property name="text">
+    <string>Start</string>
+   </property>
+  </action>
+  <action name="_actPause">
+   <property name="enabled">
+    <bool>false</bool>
+   </property>
+   <property name="icon">
+    <iconset resource="resources/rsrc.qrc">
+     <normaloff>:/button/pause</normaloff>:/button/pause</iconset>
+   </property>
+   <property name="text">
+    <string>Pause</string>
+   </property>
+  </action>
+  <action name="_actStepFwd">
+   <property name="icon">
+    <iconset resource="resources/rsrc.qrc">
+     <normaloff>:/button/step</normaloff>:/button/step</iconset>
+   </property>
+   <property name="text">
+    <string>Step forward</string>
+   </property>
+  </action>
+  <action name="_actAbout_Qt">
+   <property name="text">
+    <string>About Qt</string>
+   </property>
+  </action>
+ </widget>
+ <customwidgets>
+  <customwidget>
+   <class>TapeView</class>
+   <extends>QWidget</extends>
+   <header>tapeview.h</header>
+   <container>1</container>
+  </customwidget>
+ </customwidgets>
+ <resources>
+  <include location="resources/rsrc.qrc"/>
+ </resources>
+ <connections>
+  <connection>
+   <sender>_actExit</sender>
+   <signal>triggered()</signal>
+   <receiver>CentralWindow</receiver>
+   <slot>close()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>322</x>
+     <y>294</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>_actAbout</sender>
+   <signal>triggered()</signal>
+   <receiver>CentralWindow</receiver>
+   <slot>about()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>322</x>
+     <y>294</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>_uiRun</sender>
+   <signal>clicked()</signal>
+   <receiver>_actStart</receiver>
+   <slot>trigger()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>75</x>
+     <y>105</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>_uiPause</sender>
+   <signal>clicked()</signal>
+   <receiver>_actPause</receiver>
+   <slot>trigger()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>82</x>
+     <y>105</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>_uiStop</sender>
+   <signal>clicked()</signal>
+   <receiver>_actReset</receiver>
+   <slot>trigger()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>80</x>
+     <y>107</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>_uiStepFwd</sender>
+   <signal>clicked()</signal>
+   <receiver>_actStepFwd</receiver>
+   <slot>trigger()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>102</x>
+     <y>105</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+   </hints>
+  </connection>
+ </connections>
+ <slots>
+  <slot>aboutQt()</slot>
+ </slots>
+</ui>

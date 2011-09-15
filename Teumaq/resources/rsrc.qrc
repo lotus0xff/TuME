@@ -1,0 +1,31 @@
+<RCC>
+    <qresource prefix="/machine">
+        <file alias="cursor">arrow_up_green.png</file>
+    </qresource>
+    <qresource prefix="/button">
+        <file alias="pause">media_pause.png</file>
+        <file alias="play">media_play_green.png</file>
+        <file alias="step">media_step_forward.png</file>
+        <file alias="stop">media_stop_red.png</file>
+        <file alias="navbegin">navigate_beginning.png</file>
+        <file alias="navend">navigate_end.png</file>
+        <file alias="navleft">navigate_left.png</file>
+        <file alias="navright">navigate_right.png</file>
+        <file alias="navrightm">navigate_right2.png</file>
+        <file alias="add">add2.png</file>
+        <file alias="remove">delete2.png</file>
+        <file alias="apply">check2.png</file>
+        <file alias="clear">garbage.png</file>
+        <file alias="gotocur">nav_up_green.png</file>
+    </qresource>
+    <qresource prefix="/action">
+        <file alias="save">disk_yellow.png</file>
+        <file alias="open">folder.png</file>
+        <file alias="exit">door2.png</file>
+        <file alias="new">scroll.png</file>
+        <file alias="help">help2.png</file>
+    </qresource>
+    <qresource prefix="/">
+        <file alias="logo">logo.jpg</file>
+    </qresource>
+</RCC>
