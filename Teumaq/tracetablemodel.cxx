@@ -8,7 +8,7 @@ TraceTableModel::TraceTableModel(QObject *parent, const Machine *m) :
 {
 }
 
-int TraceTableModel::rowCount(const QModelIndex &parent)
+int TraceTableModel::rowCount(const QModelIndex &)
     const
 {
     if (_machine != NULL && _machine->log() != NULL)

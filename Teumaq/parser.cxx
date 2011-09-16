@@ -434,19 +434,21 @@ bool MachineIO::lexical()
     case Lexer::BAD_STREAM:
         _mesg.error = STREAM_ERROR;
         break;
+    default:
+        ;
     }
 
     return false;
 }
 
 // To be implemented later
-bool MachineIO::loadBinary(QDataStream &in)
+bool MachineIO::loadBinary(QDataStream &)
 {
     return false;
 }
 
 // To be implemented later
-bool MachineIO::saveBinary(QDataStream &out)
+bool MachineIO::saveBinary(QDataStream &)
 {
     return false;
 }

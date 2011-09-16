@@ -32,11 +32,13 @@ public slots:
     void execFinished();
     void resetMachine();
 
-    virtual void close();
     bool openText();
     bool saveText();
     bool saveTextAs();
     void createNew();
+
+protected:
+    void closeEvent(QCloseEvent *);
 
 private slots:
     void on__uiCurOffset_valueChanged(int );

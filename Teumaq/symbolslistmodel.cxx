@@ -7,7 +7,7 @@ SymbolsListModel::SymbolsListModel(QObject *parent, const Machine *m) :
 {
 }
 
-int SymbolsListModel::rowCount(const QModelIndex &parent) const
+int SymbolsListModel::rowCount(const QModelIndex &) const
 {
     if (_m != NULL)
         return _m->symbols().size();

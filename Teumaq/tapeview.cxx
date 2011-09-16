@@ -6,13 +6,15 @@
 
 TapeView::TapeView(QWidget *parent, Machine *m) :
     QWidget(parent), _brCellBg(Qt::white),
-    _brCellBgNI(Qt::lightGray), _clrCellPen(Qt::black),
-    _clrText(Qt::black), _brCursor(Qt::green),
+    _brCellBgNI(Qt::lightGray), _brCursor(Qt::green),
+    _clrCellPen(Qt::black), _clrText(Qt::black),
     _lvc(0), _rvc(0)
 {
     setMachine(m);
-    setSizePolicy(QSizePolicy::MinimumExpanding, QSizePolicy::MinimumExpanding);
     setFocusPolicy(Qt::StrongFocus);
+    QSizePolicy sizePolicy(QSizePolicy::MinimumExpanding, QSizePolicy::MinimumExpanding);
+    sizePolicy.setHeightForWidth(true);
+    setSizePolicy(sizePolicy);
     _focus.setColor(Qt::blue);
     _focus.setStyle(Qt::DotLine);
 }
@@ -155,7 +157,7 @@ void TapeView::resizeEvent(QResizeEvent *e)
     _cellBnd.setHeight(e->size().height() * 2 / 3);
 }
 
-void TapeView::paintEvent(QPaintEvent *e)
+void TapeView::paintEvent(QPaintEvent *)
 {
     QPainter g(this);
     if (!canView())
@@ -296,8 +298,17 @@ void TapeView::drawCursor(QPainter &g, QRect &cell)
 QSize TapeView::sizeHint() const
 {
     QFontMetrics fm = fontMetrics();
-    return QSize(fm.averageCharWidth() * 5,
-                 fm.height() * 3);
+    int side = qMax(fm.averageCharWidth() * 5, fm.height() * 3);
+    return QSize(side * visibleCells(),
+                 side + side / 3);
+}
+
+int TapeView::heightForWidth(int width) const
+{
+    int oneCellWidth = width / visibleCells() + 1;
+
+    // return a cell width + space for cursor
+    return oneCellWidth + oneCellWidth / 3;
 }
 
 void TapeView::keyPressEvent(QKeyEvent *e)

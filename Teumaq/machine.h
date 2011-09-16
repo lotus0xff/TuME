@@ -292,7 +292,7 @@ public:
     }
     bool setTapeSymbol(size_t off, symbol_t sym)
     {
-        if (validSymbol(sym) && off < _tape.size())
+        if (validSymbol(sym) && static_cast<int>(off) < _tape.size())
         {
             *(_tape.begin() + off) = sym;
             return true;
@@ -301,7 +301,7 @@ public:
     }
     bool delTapeSymbol(size_t off)
     {
-        if (off < _tape.size())
+        if (static_cast<int>(off) < _tape.size())
         {
             Cursor cur = _tape.begin() + off, tmp;
             tmp = _tape.erase(cur);

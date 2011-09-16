@@ -11,7 +11,7 @@ public:
     HMDListModel(QObject *parent = NULL):
         QAbstractListModel(parent)
     { }
-    virtual int rowCount(const QModelIndex &parent) const
+    virtual int rowCount(const QModelIndex &) const
     {
         return 3;
     }

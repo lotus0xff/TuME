@@ -57,11 +57,11 @@ public:
     }
     virtual bool insertRows(int row, int count, const QModelIndex &parent);
     virtual bool removeRows(int row, int count, const QModelIndex &parent);
-    virtual int rowCount(const QModelIndex &parent) const
+    virtual int rowCount(const QModelIndex &) const
     {
         return _program.size();
     }
-    virtual int columnCount(const QModelIndex &parent) const
+    virtual int columnCount(const QModelIndex &) const
     {
         return 6;
     }

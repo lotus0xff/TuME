@@ -1,0 +1,22 @@
+# Example of machine descriptor for TuME (ANSI charset version).
+# Fills tape with '1' from initial cursor position
+# to the right until the '1' symbol is met.
+
+# Valid alphabet
+alphabet:
+1
+
+# Mandatory states
+state0: Q0
+state1: Q1
+
+# Empty symbol
+empty: _
+
+# Tape contents
+tape:
+_, _, _, _, _, _, 1
+
+# Machine commands
+Q1(_)->(1)R.Q1
+Q1(1)->(1)S.Q0

@@ -6,7 +6,7 @@ TapeListModel::TapeListModel(QObject *owner, const Machine *m):
 {
 }
 
-int TapeListModel::rowCount(const QModelIndex &parent) const
+int TapeListModel::rowCount(const QModelIndex &) const
 {
     if (_m)
         return _m->tape().size();

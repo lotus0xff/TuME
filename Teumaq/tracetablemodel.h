@@ -32,7 +32,7 @@ public:
         refresh();
     }
     virtual int rowCount(const QModelIndex &parent) const;
-    virtual int columnCount(const QModelIndex &parent) const
+    virtual int columnCount(const QModelIndex &) const
     {
         return 4;
     }

@@ -7,7 +7,7 @@ StatesListModel::StatesListModel(QObject *parent, const Machine *m) :
 {
 }
 
-int StatesListModel::rowCount(const QModelIndex &parent) const
+int StatesListModel::rowCount(const QModelIndex &) const
 {
     if (_m != NULL)
         return _m->states().size();

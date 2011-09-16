@@ -75,6 +75,7 @@ const Machine &Machine::operator=(const Machine &other)
     /* Log is an external reference and thus is NOT
      * copied.
      */
+    return *this;
 }
 
 state_t Machine::stateByName(const QString &name)

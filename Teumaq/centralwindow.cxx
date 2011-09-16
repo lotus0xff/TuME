@@ -6,6 +6,7 @@
 #include <QFile>
 #include <QTextStream>
 #include <QFileDialog>
+#include <QCloseEvent>
 #include "tapeview.h"
 #include "widgetgroup.h"
 #include "tracetablemodel.h"
@@ -201,14 +202,26 @@ void CentralWindow::about()
 }
 
 
-void CentralWindow::close()
+void CentralWindow::closeEvent(QCloseEvent *evt)
 {
-    int res = QMessageBox::question(this, tr("Quit?"),
-                                          tr("Are you sure?"),
-                                          QMessageBox::Yes,
-                                          QMessageBox::No);
-    if (res == QMessageBox::Yes)
-        QMainWindow::close();
+    QMessageBox::StandardButton res = QMessageBox::question(this,
+                                                            tr("Confirm exit"),
+                                                            tr("Save current machine configuration before exit?"),
+                                                            QMessageBox::Save | QMessageBox::Discard | QMessageBox::Cancel,
+                                                            QMessageBox::Cancel);
+    switch (res)
+    {
+    case QMessageBox::Save:
+        saveText();
+    case QMessageBox::Discard:
+        evt->accept();
+        break;
+    case QMessageBox::Cancel:
+        evt->ignore();
+        break;
+    default:
+        QMainWindow::closeEvent(evt);
+    }
 }
 
 void CentralWindow::startExec()
@@ -338,6 +351,7 @@ bool CentralWindow::openText()
                 QMessageBox::warning(this,
                                      tr("Parser error"),
                                      message);
+                _machine = _mcopy;
             }
             fin.close();
         }
@@ -657,6 +671,11 @@ void CentralWindow::on__actDisLog_toggled(bool logOff)
         _machLog.clear();
         _machine.setLog(NULL);
     }
-    _uiTrace->setEnabled(!logOff);
+    // _uiTrace->setEnabled(!logOff);
     _uiTrace->setModel(logOff ? NULL : _mdlTrace);
+    _uiTraceLabel->setVisible(!logOff);
+    _uiTrace->setVisible(!logOff);
+    QSizePolicy szpol = _uiTape->sizePolicy();
+    szpol.setVerticalStretch(logOff ? 0 : 1);
+    _uiTape->setSizePolicy(szpol);
 }
