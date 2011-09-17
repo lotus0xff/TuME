@@ -116,8 +116,6 @@ void MachineIO::tape2text(QStringList &dest)
 
 bool MachineIO::load(QTextStream &in)
 {
-    _m.reset(Machine::RM_ERASE);
-
     Production prod;
     _mesg.error = OK;
     _mesg.line = 0;
@@ -237,6 +235,7 @@ bool MachineIO::load(QTextStream &in)
             _mesg.error = TAPE_EMPTY;
 
         // Программа
+        _m.eraseProgram();
         foreach (size_t line, productions.keys())
         {
             _mesg.error = parseProduction(productions.value(line), prod);
@@ -252,9 +251,14 @@ bool MachineIO::load(QTextStream &in)
         }
     }
 
-
     // Возвращает true при достижении конца потока (см. "lexical()")
-    return _mesg.error == OK;
+    if (_mesg.error == OK)
+    {
+        _m.reset(Machine::RM_SOFT);
+        return true;
+    }
+    else
+        return false;
 }
 
 /*! \brief Save machine in current configuration to file.
