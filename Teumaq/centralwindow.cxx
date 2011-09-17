@@ -27,6 +27,7 @@ CentralWindow::CentralWindow(QWidget *parent) :
     _opts(this)
 {
     _machine.setLog(&_machLog);
+    _machine.saveConfig();
 
     // Set up UI
     setupUi(this);
@@ -186,7 +187,7 @@ void CentralWindow::updateProgramTab()
 /// called after each machine change.
 void CentralWindow::reload()
 {
-    _mcopy = _machine;
+    _machine.saveConfig();
     _uiTape->rewindToCursor();
     updateEmulationTab();
     _mdlProgram->load();
@@ -290,7 +291,7 @@ void CentralWindow::resetMachine()
         _asyncRunner.stop();
         _asyncRunner.wait();
     }
-    _machine = _mcopy;
+    _machine.restoreConfig();
     _machLog.clear();
     _mdlTrace->clearIntervPoints();
     _uiTape->rewindToCursor();
@@ -344,6 +345,7 @@ bool CentralWindow::openText()
             }
             else
             {
+                _machine.restoreConfig();
                 QString message = tr("Line %1: %2\nLoad process interrupted."), buf;
                 Messages::parserError(buf, mio.message().error);
                 message = message.arg(QString::number(mio.message().line))
@@ -351,7 +353,6 @@ bool CentralWindow::openText()
                 QMessageBox::warning(this,
                                      tr("Parser error"),
                                      message);
-                _machine = _mcopy;
             }
             fin.close();
         }
@@ -387,7 +388,7 @@ bool CentralWindow::saveText()
         MachineIO mio(_machine);
         if (mio.save(strm, true))
         {
-            _mcopy = _machine;
+            _machine.saveConfig();
             fout.close();
             _uiSBStatus->setText(tr("Save in text format successful"));
             setWindowTitle(TITLE_BASE + " - " + _fileName);

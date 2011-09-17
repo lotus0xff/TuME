@@ -1,7 +1,3 @@
-# Example of machine descriptor for TuME.
-# Fills tape with '1' from initial cursor position
-# to the right until the '1' symbol is met.
-
 # Valid alphabet
 alphabet:
 1

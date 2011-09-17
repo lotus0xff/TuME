@@ -13,7 +13,7 @@ const quint64 Machine::MAX_TIME = ~Q_INT64_C(0);
 Machine::Machine(bool createTape):
     _stricStates(false), _stricAlphbt(false),
     _state(STATE_INITIAL), _time(Q_UINT64_C(0)),
-    _log(NULL)
+    _log(NULL), _clone(NULL)
 {
     _symbolSet.insert(SYMBOL_EMPTY, SYMBOL_EMPTY_STR);
     _stateSet.insert(STATE_FINAL, STATE_FINAL_STR);
@@ -74,6 +74,7 @@ const Machine &Machine::operator=(const Machine &other)
 
     /* Log is an external reference and thus is NOT
      * copied.
+     * Clone is volatile and should not be shared, too.
      */
     return *this;
 }

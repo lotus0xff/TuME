@@ -79,7 +79,7 @@ private:
     static const QString FILE_FILTER,
                          TITLE_BASE;
 
-    Machine _machine, _mcopy;
+    Machine _machine;
     QList<Machine::LogItem> _machLog;
     Machine::AsyncRunner _asyncRunner;
 

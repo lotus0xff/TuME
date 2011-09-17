@@ -143,6 +143,11 @@ public:
 
     Machine(bool createTape = true);
     Machine(const Machine &other);
+    ~Machine()
+    {
+        if (_clone)
+            delete _clone;
+    }
     const Machine &operator=(const Machine &other);
     state_t stateByName(const QString &name);
     symbol_t symbolByName(const QString &name);
@@ -552,6 +557,24 @@ public:
     /// Reset the state of machine and run it.
     RunResult run(quint64 timeLimit = MAX_TIME);
 
+    void saveConfig()
+    {
+        if (!_clone)
+            _clone = new Machine(*this);
+        else
+            *_clone = *this;
+    }
+
+    bool restoreConfig()
+    {
+        if (_clone)
+        {
+            *this = *_clone;
+            return true;
+        }
+        return false;
+    }
+
 private:
     /// Статическая составляющая машины - настройки
     QVector<QString> _stateSet;
@@ -569,6 +592,9 @@ private:
 
     /// Журнал, в который записываются результаты работы машины
     QList<LogItem> *_log;
+
+    /// Configuration keeper
+    Machine *_clone;
 
     friend class AsyncRunner;
 };

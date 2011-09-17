@@ -66,7 +66,7 @@ bool Messages::machineResult(QString &out, size_t res)
 
 bool Messages::parserError(QString &out, MachineIO::ErrorCode code)
 {
-    if (code < parErrSize)
+    if (static_cast<size_t>(code) < parErrSize)
     {
         out = parErrTxt[code];
         return true;
@@ -74,3 +74,5 @@ bool Messages::parserError(QString &out, MachineIO::ErrorCode code)
 
     return false;
 }
+
+#undef TR

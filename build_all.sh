@@ -2,7 +2,7 @@
 
 mkdir build
 cd build
-qmake "CONFIG+=release" ../Teumaq/Teumaq.pro
+qmake ../Teumaq/Teumaq.pro
 make && make clean
 cd ../docs
 doxygen
