@@ -132,16 +132,14 @@ void CentralWindow::postSetupUI()
     _grpAActive.clear();
     _grpAActive << _actPause;
     _grpWStill.clear();
-    _grpWStill << _uiRun << _uiStepFwd << _uiStepCount
+    _grpWStill << _uiStepCount
                << _uiNavBeg << _uiNavBack << _uiNavFwd << _uiNavEnd
                << _uiCurState << _uiCurSym << _uiCurCmd
                << _uiTape << _uiTrace << _uiSctProgram;
-    _grpWActive.clear();
-    _grpWActive << _uiPause;
 
     _uiTape->setMachine(&_machine);
     _uiTape->cursor().load(":/machine/cursor");
-    _uiTape->setVisibleCells(7);
+    _uiTape->setVisibleCells(3);
 
     updateEmulationTab();
 }
@@ -234,7 +232,6 @@ void CentralWindow::startExec()
 
     _grpWStill.setEnabled(false);
     _grpAStill.setEnabled(false);
-    _grpWActive.setEnabled(true);
     _grpAActive.setEnabled(true);
 }
 
@@ -265,7 +262,6 @@ void CentralWindow::execFinished()
 
     _grpWStill.setEnabled(true);
     _grpAStill.setEnabled(true);
-    _grpWActive.setEnabled(false);
     _grpAActive.setEnabled(false);
 
     QString buf;

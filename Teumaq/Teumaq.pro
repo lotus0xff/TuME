@@ -36,3 +36,4 @@ FORMS += centralwindow.ui \
     about.ui
 RESOURCES += resources/rsrc.qrc
 
+

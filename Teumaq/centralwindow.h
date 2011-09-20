@@ -101,8 +101,7 @@ private:
                  *_delgHMD;
 
     /// Widget & action groups
-    WidgetGroup<QWidget, 13> _grpWStill;
-    WidgetGroup<QWidget, 1> _grpWActive;
+    WidgetGroup<QWidget, 11> _grpWStill;
     WidgetGroup<QAction, 6> _grpAStill;
     WidgetGroup<QAction, 1> _grpAActive;
 

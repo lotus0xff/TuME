@@ -85,7 +85,6 @@ public:
     {
         return _focus;
     }
-    virtual int heightForWidth(int width) const;
 
 public slots:
     /*! \brief Move cursor rightwards at specified number
