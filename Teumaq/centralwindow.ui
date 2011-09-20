@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>310</width>
-    <height>384</height>
+    <width>329</width>
+    <height>454</height>
    </rect>
   </property>
   <property name="sizePolicy">
@@ -15,6 +15,9 @@
     <horstretch>0</horstretch>
     <verstretch>0</verstretch>
    </sizepolicy>
+  </property>
+  <property name="contextMenuPolicy">
+   <enum>Qt::ActionsContextMenu</enum>
   </property>
   <property name="windowTitle">
    <string>TuME</string>
@@ -30,7 +33,7 @@
     <item>
      <widget class="QTabWidget" name="_uiSections">
       <property name="sizePolicy">
-       <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+       <sizepolicy hsizetype="Ignored" vsizetype="Ignored">
         <horstretch>0</horstretch>
         <verstretch>0</verstretch>
        </sizepolicy>
@@ -491,7 +494,7 @@ command</string>
         <item>
          <widget class="QTabWidget" name="_uiPrgSections">
           <property name="sizePolicy">
-           <sizepolicy hsizetype="Ignored" vsizetype="Expanding">
+           <sizepolicy hsizetype="Ignored" vsizetype="Ignored">
             <horstretch>0</horstretch>
             <verstretch>0</verstretch>
            </sizepolicy>
@@ -500,7 +503,7 @@ command</string>
            <enum>QTabWidget::West</enum>
           </property>
           <property name="currentIndex">
-           <number>0</number>
+           <number>2</number>
           </property>
           <widget class="QWidget" name="_uiPrgSectionSets">
            <property name="sizePolicy">
@@ -893,7 +896,7 @@ command</string>
             <item>
              <layout class="QVBoxLayout" name="verticalLayout_9">
               <property name="sizeConstraint">
-               <enum>QLayout::SetNoConstraint</enum>
+               <enum>QLayout::SetDefaultConstraint</enum>
               </property>
               <item>
                <widget class="QComboBox" name="_uiTSymSel">
@@ -1048,22 +1051,16 @@ command</string>
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>310</width>
+     <width>329</width>
      <height>23</height>
     </rect>
    </property>
-   <widget class="QMenu" name="menuFile">
-    <property name="title">
-     <string>File</string>
-    </property>
-    <addaction name="_actNew"/>
-    <addaction name="separator"/>
-    <addaction name="_actOpen"/>
-    <addaction name="_actSave"/>
-    <addaction name="_actSave_as"/>
-    <addaction name="separator"/>
-    <addaction name="_actExit"/>
-   </widget>
+   <property name="defaultUp">
+    <bool>false</bool>
+   </property>
+   <property name="nativeMenuBar">
+    <bool>false</bool>
+   </property>
    <widget class="QMenu" name="menuHelp">
     <property name="title">
      <string>Help</string>
@@ -1083,6 +1080,18 @@ command</string>
     <addaction name="separator"/>
     <addaction name="_actDisLog"/>
    </widget>
+   <widget class="QMenu" name="menuFile">
+    <property name="title">
+     <string>File</string>
+    </property>
+    <addaction name="_actNew"/>
+    <addaction name="separator"/>
+    <addaction name="_actOpen"/>
+    <addaction name="_actSave"/>
+    <addaction name="_actSave_as"/>
+    <addaction name="separator"/>
+    <addaction name="_actExit"/>
+   </widget>
    <addaction name="menuFile"/>
    <addaction name="menuEmulation"/>
    <addaction name="menuHelp"/>
@@ -1096,6 +1105,9 @@ command</string>
    <property name="text">
     <string>New</string>
    </property>
+   <property name="softKeyRole">
+    <enum>QAction::PositiveSoftKey</enum>
+   </property>
   </action>
   <action name="_actOpen">
    <property name="icon">
@@ -1104,6 +1116,9 @@ command</string>
    </property>
    <property name="text">
     <string>Open</string>
+   </property>
+   <property name="softKeyRole">
+    <enum>QAction::PositiveSoftKey</enum>
    </property>
   </action>
   <action name="_actSave">
@@ -1114,10 +1129,16 @@ command</string>
    <property name="text">
     <string>Save</string>
    </property>
+   <property name="softKeyRole">
+    <enum>QAction::PositiveSoftKey</enum>
+   </property>
   </action>
   <action name="_actSave_as">
    <property name="text">
     <string>Save as</string>
+   </property>
+   <property name="softKeyRole">
+    <enum>QAction::PositiveSoftKey</enum>
    </property>
   </action>
   <action name="_actExit">
@@ -1127,6 +1148,9 @@ command</string>
    </property>
    <property name="text">
     <string>E&amp;xit</string>
+   </property>
+   <property name="softKeyRole">
+    <enum>QAction::PositiveSoftKey</enum>
    </property>
   </action>
   <action name="_actAbout">
@@ -1140,25 +1164,8 @@ command</string>
    <property name="text">
     <string>About</string>
    </property>
-  </action>
-  <action name="actStart">
-   <property name="text">
-    <string>Reset</string>
-   </property>
-  </action>
-  <action name="actPause">
-   <property name="text">
-    <string>Start</string>
-   </property>
-  </action>
-  <action name="actPause_2">
-   <property name="text">
-    <string>Pause</string>
-   </property>
-  </action>
-  <action name="actionStep_forward">
-   <property name="text">
-    <string>Step forward</string>
+   <property name="softKeyRole">
+    <enum>QAction::PositiveSoftKey</enum>
    </property>
   </action>
   <action name="_actReset">
@@ -1172,6 +1179,9 @@ command</string>
    <property name="text">
     <string>Reset</string>
    </property>
+   <property name="softKeyRole">
+    <enum>QAction::PositiveSoftKey</enum>
+   </property>
   </action>
   <action name="_actStart">
    <property name="icon">
@@ -1180,6 +1190,9 @@ command</string>
    </property>
    <property name="text">
     <string>Start</string>
+   </property>
+   <property name="softKeyRole">
+    <enum>QAction::PositiveSoftKey</enum>
    </property>
   </action>
   <action name="_actPause">
@@ -1193,6 +1206,9 @@ command</string>
    <property name="text">
     <string>Pause</string>
    </property>
+   <property name="softKeyRole">
+    <enum>QAction::PositiveSoftKey</enum>
+   </property>
   </action>
   <action name="_actStepFwd">
    <property name="icon">
@@ -1202,10 +1218,16 @@ command</string>
    <property name="text">
     <string>Step forward</string>
    </property>
+   <property name="softKeyRole">
+    <enum>QAction::PositiveSoftKey</enum>
+   </property>
   </action>
   <action name="_actAbout_Qt">
    <property name="text">
     <string>About Qt</string>
+   </property>
+   <property name="softKeyRole">
+    <enum>QAction::PositiveSoftKey</enum>
    </property>
   </action>
   <action name="_actDisLog">
@@ -1218,6 +1240,9 @@ command</string>
    </property>
    <property name="text">
     <string>Disable log</string>
+   </property>
+   <property name="softKeyRole">
+    <enum>QAction::PositiveSoftKey</enum>
    </property>
   </action>
  </widget>

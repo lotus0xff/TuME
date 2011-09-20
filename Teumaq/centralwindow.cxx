@@ -25,7 +25,7 @@ CentralWindow::CentralWindow(QWidget *parent) :
     _mdlProgram(NULL), _mdlHMD(NULL), _delgStates(NULL),
     _delgSymbols(NULL), _delgHMD(NULL),
     _opts(this)
-{
+{   
     _machine.setLog(&_machLog);
     _machine.saveConfig();
 
