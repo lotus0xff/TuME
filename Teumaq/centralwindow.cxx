@@ -7,6 +7,7 @@
 #include <QTextStream>
 #include <QFileDialog>
 #include <QCloseEvent>
+#include "minibrowser.h"
 #include "tapeview.h"
 #include "widgetgroup.h"
 #include "tracetablemodel.h"
@@ -68,6 +69,9 @@ void CentralWindow::setupConnections()
     connect(_uiStateAdd, SIGNAL(clicked()), this, SLOT(stateAdd()));
     connect(_uiStateRem, SIGNAL(clicked()), this, SLOT(stateDel()));
     connect(_uiStateSet, SIGNAL(clicked()), this, SLOT(stateSet()));
+
+    // Misc.
+    connect(_uiSBStatus, SIGNAL(clicked()), this, SLOT(expandStatus()));
 }
 
 void CentralWindow::setupStatusBar()
@@ -76,15 +80,13 @@ void CentralWindow::setupStatusBar()
     _uiSBTime->setFrameStyle(QFrame::Panel | QFrame::Sunken);
     _uiSBTime->setAlignment(Qt::AlignCenter);
     _uiSBTime->setToolTip(tr("Current time"));
-    _uiSBExec = new QLabel(statusBar());
-    _uiSBExec->setFrameStyle(QFrame::Panel | QFrame::Sunken);
-    _uiSBExec->setToolTip(tr("Machine execution status"));
-    _uiSBStatus = new QLabel(statusBar());
-    _uiSBStatus->setFrameStyle(QFrame::Panel | QFrame::Sunken);
-    _uiSBStatus->setToolTip(tr("Current status"));
+    _uiSBTime->setSizePolicy(QSizePolicy::Preferred, QSizePolicy::Minimum);
+    _uiSBStatus = new QPushButton(statusBar());
+    _uiSBStatus->setToolTip(tr("Current status (click to expand text)"));
+    _uiSBStatus->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Fixed);
+    _uiSBStatus->setFlat(true);
 
     statusBar()->addPermanentWidget(_uiSBTime, 1);
-    statusBar()->addPermanentWidget(_uiSBExec, 4);
     statusBar()->addPermanentWidget(_uiSBStatus, 4);
 
     _uiSBTime->setText(tr("0"));
@@ -226,7 +228,6 @@ void CentralWindow::closeEvent(QCloseEvent *evt)
 void CentralWindow::startExec()
 {
     _uiSBStatus->setText(tr("Running..."));
-    _uiSBExec->setText(QString());
 
     _asyncRunner.start();
 
@@ -239,11 +240,9 @@ void CentralWindow::stepExec()
 {
     int steps = _uiStepCount->value();
     Machine::RunResult rr = _machine.exec(steps);
-    if (rr.reason == Machine::XR_LIMIT)
-        _uiSBStatus->setText(tr("%1 commands executed").arg(QString::number(steps)));
     QString buf;
     if (Messages::machineResult(buf, rr.reason))
-        _uiSBExec->setText(buf);
+        _uiSBStatus->setText("Exec: "+buf);
     updateEmulationTab();
 }
 
@@ -258,15 +257,13 @@ void CentralWindow::pauseExec()
 
 void CentralWindow::execFinished()
 {
-    _uiSBStatus->setText(tr("Execution finished"));
-
     _grpWStill.setEnabled(true);
     _grpAStill.setEnabled(true);
     _grpAActive.setEnabled(false);
 
     QString buf;
     if (Messages::machineResult(buf, _asyncRunner.result().reason))
-        _uiSBExec->setText(buf);
+        _uiSBStatus->setText("Exec: "+buf);
 
     updateEmulationTab();
 }
@@ -427,7 +424,6 @@ void CentralWindow::createNew()
     reload();
     _fileName.clear();
     setWindowTitle(TITLE_BASE);
-    _uiSBExec->clear();
     _uiSBStatus->setText(tr("New machine created"));
 }
 
@@ -675,4 +671,21 @@ void CentralWindow::on__actDisLog_toggled(bool logOff)
     QSizePolicy szpol = _uiTape->sizePolicy();
     szpol.setVerticalStretch(logOff ? 0 : 1);
     _uiTape->setSizePolicy(szpol);
+}
+
+void CentralWindow::expandStatus()
+{
+    QMessageBox::information(this, tr("Current status"), _uiSBStatus->text());
+}
+
+void CentralWindow::on__actHelp_triggered()
+{
+    // Create browser, show help in it
+    static MiniBrowser *brwsr = NULL;
+    if (!brwsr)
+    {
+        brwsr = new MiniBrowser("qrc:/help", this);
+        brwsr->setWindowTitle("TuME Help system");
+    }
+    brwsr->showMaximized();
 }

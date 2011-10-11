@@ -28,5 +28,6 @@
     </qresource>
     <qresource prefix="/">
         <file alias="logo">logo.jpg</file>
+        <file alias="help">help/index.html</file>
     </qresource>
 </RCC>

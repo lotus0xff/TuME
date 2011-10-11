@@ -1059,14 +1059,19 @@ command</string>
     <bool>false</bool>
    </property>
    <property name="nativeMenuBar">
-    <bool>false</bool>
+    <bool>true</bool>
    </property>
-   <widget class="QMenu" name="menuHelp">
+   <widget class="QMenu" name="menuFile">
     <property name="title">
-     <string>Help</string>
+     <string>File</string>
     </property>
-    <addaction name="_actAbout"/>
-    <addaction name="_actAbout_Qt"/>
+    <addaction name="_actNew"/>
+    <addaction name="separator"/>
+    <addaction name="_actOpen"/>
+    <addaction name="_actSave"/>
+    <addaction name="_actSave_as"/>
+    <addaction name="separator"/>
+    <addaction name="_actExit"/>
    </widget>
    <widget class="QMenu" name="menuEmulation">
     <property name="title">
@@ -1080,23 +1085,26 @@ command</string>
     <addaction name="separator"/>
     <addaction name="_actDisLog"/>
    </widget>
-   <widget class="QMenu" name="menuFile">
+   <widget class="QMenu" name="menuHelp">
     <property name="title">
-     <string>File</string>
+     <string>Help</string>
     </property>
-    <addaction name="_actNew"/>
-    <addaction name="separator"/>
-    <addaction name="_actOpen"/>
-    <addaction name="_actSave"/>
-    <addaction name="_actSave_as"/>
-    <addaction name="separator"/>
-    <addaction name="_actExit"/>
+    <addaction name="_actHelp"/>
+    <addaction name="_actAbout"/>
+    <addaction name="_actAbout_Qt"/>
    </widget>
    <addaction name="menuFile"/>
    <addaction name="menuEmulation"/>
    <addaction name="menuHelp"/>
   </widget>
-  <widget class="QStatusBar" name="statusbar"/>
+  <widget class="QStatusBar" name="statusbar">
+   <property name="sizePolicy">
+    <sizepolicy hsizetype="Ignored" vsizetype="Preferred">
+     <horstretch>0</horstretch>
+     <verstretch>0</verstretch>
+    </sizepolicy>
+   </property>
+  </widget>
   <action name="_actNew">
    <property name="icon">
     <iconset resource="resources/rsrc.qrc">
@@ -1156,10 +1164,6 @@ command</string>
   <action name="_actAbout">
    <property name="checkable">
     <bool>false</bool>
-   </property>
-   <property name="icon">
-    <iconset resource="resources/rsrc.qrc">
-     <normaloff>:/action/help</normaloff>:/action/help</iconset>
    </property>
    <property name="text">
     <string>About</string>
@@ -1243,6 +1247,18 @@ command</string>
    </property>
    <property name="softKeyRole">
     <enum>QAction::PositiveSoftKey</enum>
+   </property>
+  </action>
+  <action name="_actHelp">
+   <property name="icon">
+    <iconset resource="resources/rsrc.qrc">
+     <normaloff>:/action/help</normaloff>:/action/help</iconset>
+   </property>
+   <property name="text">
+    <string>Help</string>
+   </property>
+   <property name="toolTip">
+    <string>Show help</string>
    </property>
   </action>
  </widget>

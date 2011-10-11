@@ -58,14 +58,15 @@ private slots:
     void stateSet();
     void on__uiCmdClear_clicked();
     void on__uiCmdApply_clicked();
-
     void on__uiCmdAdd_clicked();
-
     void on__uiCmdRem_clicked();
-
     void on__actAbout_Qt_triggered();
-
     void on__actDisLog_toggled(bool arg1);
+
+    // Misc.
+    void expandStatus();
+
+    void on__actHelp_triggered();
 
 private:
     void setupConnections();
@@ -84,8 +85,8 @@ private:
     Machine::AsyncRunner _asyncRunner;
 
     /// Status bar indicators
-    QLabel *_uiSBTime, *_uiSBExec,
-           *_uiSBStatus;
+    QLabel *_uiSBTime;
+    QPushButton *_uiSBStatus;
 
     /// Common machine-related data models
     StatesListModel *_mdlStates;

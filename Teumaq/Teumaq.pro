@@ -14,7 +14,8 @@ SOURCES += main.cxx \
     tapelistmodel.cxx \
     cmcbdelegate.cxx \
     hmdlistmodel.cxx \
-    prdedtblmodel.cxx
+    prdedtblmodel.cxx \
+    minibrowser.cxx
 HEADERS += machine.h \
     parser.h \
     lexer.h \
@@ -30,10 +31,15 @@ HEADERS += machine.h \
     tapelistmodel.h \
     cmcbdelegate.h \
     hmdlistmodel.h \
-    prdedtblmodel.h
+    prdedtblmodel.h \
+    minibrowser.h
 FORMS += centralwindow.ui \
     settingsdlg.ui \
     about.ui
 RESOURCES += resources/rsrc.qrc
+
+
+
+
 
 

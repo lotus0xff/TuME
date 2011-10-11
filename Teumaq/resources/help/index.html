@@ -1,0 +1,549 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html dir="ltr"><head>
+
+
+
+
+
+
+  
+  <meta http-equiv="CONTENT-TYPE" content="text/html; charset=UTF-8"><title>TuME help</title>
+  
+
+  
+  
+  <meta name="author" content="Kirill Dmitriev">
+
+  
+  <meta name="DESCRIPTION" content="TuME internal help">
+
+  
+  <style type="text/css">
+dfn {
+  text-decoration: underline;
+  font-style: normal;
+}
+em {
+  font-style: normal;
+  font-weight: bold;
+}
+table {
+  border-collapse: collapse;
+}
+td {
+  border: thin solid black;
+  vertical-align: middle;
+}
+th {
+  border: thin solid black;
+  vertical-align: middle;
+}
+ul ul {
+  list-style-type: square;
+}
+ul.controls {
+  list-style-type: none;
+}
+div.hint {
+  font-weight: bold;
+  color: silver;
+  display: inline;
+}
+h2 {
+  border-top: 10px solid black;
+  border-bottom: 2px dashed black;
+  padding: 0.5em 0;
+  text-align: center;
+}
+abbr {
+  font-weight: inherit;
+  text-transform: uppercase;
+  text-decoration: underline;
+}
+div.code {
+  border: 1px dotted black;
+  padding: 0.3em 0.2em 0.2em 0.3em;
+  color: #009900;
+  background-color: #d7d7d7;
+  font-family: monospace;
+}
+
+</style></head><body>
+<h1 align="center">TuME help</h1>
+
+<!-- TOC -->
+ 
+
+<h2>Contents</h2>
+
+<ol>
+<li><a href="#intro">Introduction</a></li><li><a href="#general">General description</a></li><li><a href="#edit">Program edition</a></li><li><a href="#emul">Emulation</a></li><li><a href="#tml">TML syntax</a></li><li><a href="#lims">Limitations</a></li>
+</ol>
+
+<!-- Introduction , #intro -->
+<h2 id="intro">Introduction</h2>
+
+
+
+<p>TuME stands for "Turing machine emulator" and this is what it is
+actually aimed to do. The Turing machine is a mathematical model of an
+idealized digital computer, described by English scientist Alan Turing
+in 1936. Almost every modern book about algorithm theory contains a
+thorough, formal description of the Turing machine, so here I will give
+only a brief overview, enough to start your experience with TuME. The
+Turing machine consists of an infinite length <dfn>tape</dfn> divided
+into cells, each containing a symbol from a finite set. The latter set
+is called the machine's <dfn>external alphabet</dfn>. One of its
+symbol is reserved and called <dfn>empty symbol</dfn>. There is also a
+
+<dfn>head</dfn> over the tape, able to move in both directions (namely <dfn>right</dfn>
+and <dfn>left</dfn>), read a symbol from cell below it and write a
+symbol to it. When <dfn>head</dfn> attempts to move behind the last
+cell of the tape, a new cell is attached to the corresponding end of
+the tape, and it is filled with an <dfn>empty symbol</dfn>. That is
+how <dfn>tape</dfn> becomes infinite. Machine always reside in a <dfn>state</dfn>
+
+
+
+from a finite <dfn>state set</dfn> and operates in a discrete time.
+There are two elements of <dfn>state set</dfn> with a special meaning:
+an <dfn>initial</dfn> and <dfn>final</dfn> states. The head's
+behavior is determined by a set of <dfn>commands</dfn>, each of which
+specifies the conditions that must be met at the time <tt>(i)</tt>,
+and actions undertaken at <tt>(i+1)</tt>. Previously mentioned <dfn>initial
+state</dfn> is supposed to appear only in the conditional part of the
+commands, whilst <dfn>final state</dfn> - only in the actions part.
+Other states can appear anywhere. Combination of an external alphabet,
+state set, tape with a <dfn>word</dfn> on it and a head located
+somewhere on it, and current machine state is called <dfn>configuration</dfn>.
+A set of commands is called the machine's <dfn>program</dfn>.<br>
+
+
+
+During the execution step <tt>(i)</tt>, machine compares currently
+observed symbol on tape and current state with those of commands from
+its program. When a command matches, it is executed (which means, its
+actions are performed at the step <tt>(i+1)</tt>). Now current
+symbol/state are compared with the program data and the process
+continues... It halts due to one of the following conditions: </p>
+
+<ol>
+<li>Current state is the <dfn>final state</dfn>. As long as it is
+not supposed to be met in conditional part of any command, it will
+always lead to the end of execution. Such end can be called
+"successful". Machine is then called <dfn>applicable to the word on
+tape in initial configuration</dfn>.</li><li>Current state is <strong>not</strong> the <dfn>final state</dfn>
+
+
+
+but, still, there is no command in program for machine's current
+configuration. It's a faulty situation and it means that program is
+incorrect. (The same is true for those programs that put machine in
+an infinite loop).</li>
+</ol>
+
+Besides of algorithm notion formal illustration, Turing machines are
+used for computability researches and some other mathematical problems.
+This emulator is intended to be a "material" illustration of the Turing
+machine itself, as well as debug tool for computer scientists.
+<!-- General description, #general -->
+<h2 id="general">General description</h2>
+
+<p>TuME is a fast, easy to use tool for running Turing machine programs on multiple platforms, both desktop and mobile. Amongst its
+features are the following: </p>
+
+<ul>
+<li> Ability to run in <em>automatic mode</em>, - that is, once the program &amp; configuration for machine are specified, emulator
+continuously executes commands until it meets a halt condition. You
+cannot intervene in machine execution in automatic mode, but You can
+suspend execution and continue in step-by-step mode. (However, this is
+an unusual case, because an average execution session finishes in a
+twinkle of an eye). </li><li> Ability to run in <em>step-by-step mode</em>. In each step You
+can observe current configuration and command that will be picked from
+the program. Step size can vary from 1 to any number of machine time
+units. You can even change current symbol below the head and current
+machine state (here and forth such changes will be called "<i>interventions</i>").
+  </li><li> Tracing of every step that is done (and interventions performed
+by user). </li><li> A handy visualization of the <dfn>tape</dfn>. </li><li> Ability to save/load Turing machine configuration &amp; program description to/from plain text file (in <a href="#tml">TML</a>
+format). </li><li> Clear, error-prone configuration &amp; program editor. </li>
+</ul>
+
+TuME might be useful to those who study (or teach) algorithm theory as
+a visual aid, to mathematicians and computer science researchers, and
+to all those geeks who play with their smart phones in subway.
+
+<!-- Edition, #edit -->
+<h2 id="edit">Program edition</h2>
+
+<p>Once You have loaded TuME, You can see two tabs at the top of main
+window, corresponding to "Emulation" and "Program" sections of the
+application. Select the "Program" tab.
+Now, at the left side of main window You should see three tabs relating
+to&nbsp; “Sets”,
+“Commands” and “Tape” subsections of editor. Their content relates to
+edition of the
+corresponding aspects of machine. Note that, as far as word on <dfn>tape</dfn>
+
+
+and <dfn>program</dfn> commands depend on <dfn>external alphabet</dfn>
+and <dfn>state set</dfn> elements, this aspect should be edited before
+the other two. </p>
+
+
+<h3 id="edit_sets">Sets edition</h3>
+
+<p>Select the "Sets" subsection in the "Program" section, You will see
+two lists corresponding to <dfn>state set</dfn> and <dfn>external
+alphabet</dfn> edition. Below each of them there is a line of control
+elements. To add a new element of the set, write its name into text
+field below the corresponding list and press <img style="width: 16px; height: 16px;" alt="Add new &lt;...&gt;" src="qrc:/button/add"> button. To rename the element, select it in the
+list, enter new name into text field and press <img style="width: 16px; height: 16px;" alt="Rename &lt;...&gt;" src="qrc:/button/apply"> button. Once the element is renamed in the sets
+editor, it will be renamed everywhere it is already in use. To remove
+last element, simply press <img style="width: 16px; height: 16px;" alt="Delete last &lt;...&gt;" src="qrc:/button/remove"> button. You cannot
+delete an element that is in use somewhere in the <dfn>program</dfn>
+
+
+
+or <dfn>tape</dfn>, so alter or remove relative commands and tape
+cells first.<br>
+<small>Note: restriction to delete only the last element might seem
+inconvenient, but remember, that You can achieve same effect by
+removing some elements from the tail of the list and then renaming the
+others.</small></p>
+
+<h3 id="edit_cmds">Commands edition</h3>
+
+<p>On the "Commands" subsection You shall see a big table in the center
+and four buttons below it. The table describes <dfn>program</dfn> of
+the machine. Each row refers to a command. There are 6 columns
+in the table:</p>
+
+<table style="text-align: left; width: 100%; height: 221px;" border="0" cellpadding="2" cellspacing="0">
+
+  <thead style="text-align: center;"><tr>
+
+
+    <th>Column name</th>
+
+    <th>Editable</th>
+    <th>Description</th>
+  </tr>
+  </thead> <tbody>
+    <tr>
+
+
+      <td style="text-align: center;">Current state<br>
+      </td>
+
+      <td style="vertical-align: middle; text-align: center;">yes<br>
+      </td>
+      <td style="vertical-align: middle; text-align: left;">A state that machine needs to reside
+in at <tt>(i)</tt> for this command to be chosen
+      </td>
+
+
+    </tr>
+    <tr>
+      <td style="text-align: center;">Observed symbol<br>
+
+      </td>
+      <td style="text-align: center;">yes<br>
+      </td>
+      <td>A symbol that must appear below
+the <cite>head</cite> at <tt>(i)</tt> for this command to be chosen
+      </td>
+
+
+    </tr>
+
+    <tr>
+      <td style="text-align: center;">Movement direction<br>
+      </td>
+      <td style="text-align: center;">yes<br>
+      </td>
+      <td>Where to move the <cite>head</cite>
+
+
+at <tt>(i+1)</tt> if this command is executed
+      </td>
+
+    </tr>
+    <tr>
+      <td style="text-align: center;">State to switch to<br>
+      </td>
+      <td style="text-align: center;">yes<br>
+
+
+      </td>
+      <td>A state that machine will switch to
+at <tt>(i+1)</tt> if this command is executed
+      </td>
+
+    </tr>
+    <tr>
+      <td style="text-align: center;">Symbol to write<br>
+
+      </td>
+
+      <td style="text-align: center;">yes<br>
+      </td>
+      <td>A symbol that will be written in the cell at <tt>(i+1)</tt> <span style="font-weight: bold;">before</span> the <cite>head</cite> movement performed<br>
+      </td>
+
+    </tr>
+    <tr>
+
+      <td style="text-align: center;">TML code<br>
+
+      </td>
+      <td style="text-align: center;">no<br>
+      </td>
+      <td>The command represented in TML<br>
+      </td>
+
+    </tr>
+
+    
+  </tbody>
+</table>
+
+<p>To edit a command, select the corresponding cell in the table and
+switch to edit mode (it is platform-dependent, e. g., pressing a space
+for desktop, pressing a command hard button on a Symbian device, etc.).
+From a drop-down list select an appropriate item and leave edit mode.
+To add a new row, press <img style="width: 16px; height: 16px;" alt="Add production" src="qrc:/button/add">
+button. Newly added rows are highlighted with gray, so that You could
+easily identify them. Once such row has been altered, it is no longer
+highlighted. To remove a row, select&nbsp;a row You wish to remove (if You won't do, the last one will be removed) and press <img style="width: 16px; height: 16px;" alt="Remove production" src="qrc:/button/remove"> button.<br>
+Once You have finished the edition, press <img style="width: 16px; height: 16px;" alt="Apply changes" src="qrc:/button/apply"> button to push the program into machine, or <img style="width: 16px; height: 16px;" alt="Revert changes" src="qrc:/button/clear"> to erase the changes You have made and pull the program from machine to editor.<br>
+<small>Note: unlike the other editor subsections, changes made in this one need to be explicitly confirmed by user. If You won't press <img style="width: 16px; height: 16px;" alt="Apply changes" src="qrc:/button/apply"></small> <small>button after edition is completed, machine will still run an obsolete set of commands (although changes won't be dropped until </small><img style="width: 16px; height: 16px;" alt="Revert changes" src="qrc:/button/clear"><small> button is pressed).</small></p>
+<h3 id="edit_tape">Tape edition</h3>
+<p>Tape edition subsection allows You to specify initial word on <cite>tape</cite> and initial head position relative to the first symbol on tape. Word on <cite>tape</cite> is presented in the list at the left side of main window. Unlike tape view in the <a href="#emul">emulation section</a>,
+symbols here are aligned vertically, leftmost being at the top of the
+list and rightmost – at the end. To add a new symbol to the end of the <cite>tape</cite>, select appropriate symbol from the drop-down list at the right part of the window, and press <img style="width: 16px; height: 16px;" alt="Add symbol" src="qrc:/button/add"> button. To change a symbol somewhere on the <cite>tape</cite>, select it in the list, select new symbol from drop-down list and press <img style="width: 16px; height: 16px;" alt="Set symbol" src="qrc:/button/apply"> button. To remove a symbol from the <cite>tape</cite>, select it in the list and press <img style="width: 16px; height: 16px;" alt="Remove symbol" src="qrc:/button/remove"> button.<br>
+When You need to change initial offset of <cite>head</cite> from the beginning of the <cite>tape</cite>,
+enter it manually to the text field with a spinner at the right side of
+the window ("0" points to the first symbol, "1" to the second and so
+on). Or You can simply pick the symbol You wish <cite>head</cite> to point to, and press <img style="width: 16px; height: 16px;" alt="Use list selection as offset" src="qrc:/button/navrightm"> button.</p>
+<h3>Load and save current program and configuration</h3>
+<p>Machine configuration and program can be saved to and load from a single file. Current TuME version supports only text-based <a href="#tml">TML</a>
+format, but there will be an option in the future to save/load binary
+files as well. TML files can be easily edited from the simplest external text editor, if You dislike the way TuME editor does.<br>
+</p>
+<ul>
+
+  
+  <li>To <em>load a machine</em> (meant, to load its configuration and program) from a TML file, select menu item "File &gt; Open" (marked with <img style="width: 16px; height: 16px;" alt="Open" src="qrc:/action/open">
+icon), select the file from Your local file system and open it. In case
+of error, current program and configuration remain intact. If an
+error occurs during TML parsing process, You will be given a message
+with the reason of failure and source file line number, where the error
+resides.<br>
+    <small>Note, that TuME menu is platform-dependent, so "menu items"
+mentioned here relate to a common menu items for a desktop platform, or
+a soft button items for mobile platforms.</small><br>
+  </li>
+
+  <li>To <em>save the machine</em> to a TML format file, select menu item "File &gt; Save" (marked with <img style="width: 16px; height: 16px;" alt="Save" src="qrc:/action/save"> icon).
+Current program and configuration will be saved in the current file, if
+any, otherwise You will be asked to select new file name and location.
+Menu item "File &gt; Save as" works similar way, but it confirms You
+regardless of whether there is a current file or not. Every file that
+was recently successfully opened or saved is assumed current.<br>
+Beware that application will always save <span style="font-style: italic;">current</span>
+machine configuration, even if You have already initiated its
+execution. If You need to save the program in its initial
+configuration, do so right after edition is completed!</li>
+  <li>To <em>create an empty machine</em>, select menu item "File &gt; New" (marked with&nbsp;<img style="width: 16px; height: 16px;" alt="New" src="qrc:/action/new"> icon). <cite>Empty machine</cite> has no commands in its program, <dfn>empty symbol</dfn> in external alphabet, <dfn>initial</dfn> and <dfn>final</dfn>
+states in state set and a word of a single empty symbol on tape. Right
+after TuME have been launched, its machine is also empty.<br>
+  </li>
+</ul>
+<p>Once the machine have been saved or loaded, a corresponding restore
+point is created (or overwritten, if any). Each time the machine is
+reset, its configuration and program will be set to those from restore
+point.<br>
+</p>
+<ul>
+
+</ul>
+
+
+<h2 id="emul">Emulation</h2>
+<p>To begin emulation, go to "Emulation" section by selecting the
+corresponding tab at the top of main window. Now You shall see the
+emulation screen. Here is a list of components that You shall see here from top to bottom of the screen:</p>
+<ul>
+  <li><em>tape view</em>, displayed as a row of a few (typically 7) cells with an image (typically this: <img style="width: 16px; height: 16px;" alt="Green up pointing arrow" src="qrc:/machine/cursor">) below the cell being currently observed by the head. Cells that are <span style="font-style: italic;">really</span> in the tape are displayed white, cells that are <span style="font-style: italic;">potentially</span>
+available, are displayed light gray (didn't You forget that the tape is
+infinite?). When in focus, tape view is navigable with the keyboard (or
+hard buttons):<br>
+    <ul>
+      <li><tt>right</tt> key scrolls view 1 cell rightwards;</li>
+      <li><tt>left</tt> key scrolls view 1 cell leftwards;</li>
+      <li><tt>up</tt> key scrolls view until the rightmost <span style="font-style: italic;">real cell</span> appears at the right side of the view;</li>
+      <li><tt>down</tt> key scrolls view until the leftmost <span style="font-style: italic;">real cell</span> appears at the left side of the view;</li>
+      <li><tt>escape</tt> (or <tt>clear</tt> for mobiles) centers the view around the cell currently being observed by the machine's head.</li>
+    </ul>
+</li>
+  <li id="navpane"><em>navigation pane</em> with the following controls:<br>
+    <ul class="controls">
+      <li><img style="width: 16px; height: 16px;" alt="Navigate to left tape border" src="qrc:/button/navbegin"> scrolls view until the leftmost <span style="font-style: italic;">real cell</span> appears at the left side of the view;</li>
+      <li><img style="width: 16px; height: 16px;" alt="Navigate tape left" src="qrc:/button/navleft"> scrolls view 1 cell leftwards;<br>
+</li>
+      <li><img style="width: 16px; height: 16px;" alt="Go to cursor" src="qrc:/button/gotocur"> centers the view around the cell currently being observed by the machine's head;</li>
+      <li><img style="width: 16px; height: 16px;" alt="Stop / reset" src="qrc:/button/stop"> <span style="font-style: italic;">(opt.)</span> reverts the machine state to the most recent restore point;</li>
+      <li><img style="width: 16px; height: 16px;" alt="Pause" src="qrc:/button/pause"> <span style="font-style: italic;">(opt.) </span>when automatic execution process is in progress, pauses it, switching to the step-by-step execution mode;</li>
+      <li><img style="width: 16px; height: 16px;" alt="Run" src="qrc:/button/play"><span style="font-style: italic;"> (opt.) </span>starts execution in automatic mode;</li>
+      <li><img style="width: 16px; height: 16px;" alt="Step forward" src="qrc:/button/step"> <span style="font-style: italic;">(opt.)</span> executes machine for the one step (<span style="font-style: italic;">step</span> is not the same as <span style="font-style: italic;">machine time unit</span>, see below);</li>
+      <li id="setstep"><strong>number input field</strong> sets the number of <span style="font-style: italic;">machine time units</span> corresponding to one <span style="font-style: italic;">step</span> (typically 1);</li>
+      <li><img style="width: 16px; height: 16px;" alt="Navigate tape right" src="qrc:/button/navright"> <span style="font-style: italic;"></span>scrolls view 1 cell rightwards;</li>
+      <li><img style="width: 16px; height: 16px;" alt="Navigate to right tape border" src="qrc:/button/navend"> scrolls view until the rightmost <span style="font-style: italic;">real cell</span> appears at the right side of the view.</li>
+    </ul>
+  </li>
+  <li id="mon_row"><em>monitoring row</em>,
+displaying (from left to right) current machine state, symbol on tape,
+observed by the head, and a command that matches their combination.
+This row is used mainly during execution in step-by-step mode. Current
+state and symbol are editable and displayed as currently selected
+values in drop-down lists. You can change them by choosing another
+values there. Such changes affect only current execution session and
+are not saved when the configuration and program are saved or when
+reset is performed.</li>
+  <li><em>execution trace</em>, a read-only table with a respective
+label at the top. Each of its rows relates to a command executed by the
+machine. Commands are show in chronological order with the first
+executed command at the top of the table. If a sequence of a few
+similar commands appears in a trace, they are jammed into two rows: the
+first displays the command itself, and the second has all of its
+columns set to "..." (ellipsis), assuming "and so on". When at the
+machine time unit, corresponding to some row, there was a manual change
+of current state or symbol observed by the head, such row is
+highlighted with red color (<span style="border: 1px solid black; background-color: red;"> like this </span>).<br>
+Here is a detailed description of the table columns:<br>
+    <ol>
+      <li><tt>Time</tt> – a machine time unit, at which a commands was executed.<br>
+      </li>
+      <li><tt>State</tt> – in this state machine resided at the <tt>Time</tt> time unit.<br>
+      </li>
+      <li><tt>Symbol</tt> – this symbol was observed by the machine's head at the <tt>Time</tt> time unit.<br>
+      </li>
+      <li><tt>Chosen command</tt> – the command that was executed, because it matched a combination of <tt>State</tt> and <tt>Symbol</tt>.</li>
+    </ol>
+Note, that You can stop tracing of the the execution by checking "Emulation &gt; Disable log" (icon: <img style="width: 16px; height: 16px;" alt="Disable log" src="qrc:/button/log">) menu item. If You do, execution trace will disappear from the screen.</li>
+  <li><em>status bar</em>, although is not part of emulation screen, is
+especially important here. It contains three (for desktops) or two (for
+mobile platforms) sections, from left to right:<br>
+    <ul>
+      <li><strong>Current time</strong>, in machine time units. After
+application is loaded or reset performed, displays zero value. When
+machine is executed in step-by-step mode, data visible in the
+monitoring row relates to the machine time displayed here. After
+machine has completed execution in automatic mode, displays (last
+command execution time + 1).</li>
+      <li><strong>Machine execution status</strong> (desktop TuME
+versions only). Displays the reason of the last machine execution
+termination. On mobile platforms, this kind of information is placed in
+        <span style="font-style: italic;">Current status</span> section, along common application notifications.</li>
+      <li><em>Current status</em>. Displays various application-wide information: errors, notifications, etc. On mobile platforms it also shows execution status messages, as execution events happen, prefixed with "<tt>Exec:</tt>".
+As far as mobile screen is small, some messages do not fit in this
+section. For this reason, on mobile platforms it is performed as
+button. Press this button to see the whole message in a separate dialog
+box.</li>
+    </ul>
+  </li>
+
+</ul>
+<p>Execution control is based on the following menu items in "<em>Emulation</em>" menu:</p>
+<ul class="controls">
+  <li id="item_reset"><img style="width: 16px; height: 16px;" alt="Reset" src="qrc:/button/stop"> "<em>Reset</em>" – reverts the machine state to the most recent restore point.</li>
+  <li id="item_start"><img style="width: 16px; height: 16px;" alt="Start" src="qrc:/button/play"> "<em>Start</em>" – resets the machine (see above) and begins its executions in automatic mode.<br>
+  </li>
+  <li id="item_pause"><img style="width: 16px; height: 16px;" alt="Pause" src="qrc:/button/pause"> "<em>Pause</em>" – interrupts hanged machine execution, for example, if it entered an infinite loop.</li>
+  <li id="item_stepfwd"><img style="width: 16px; height: 16px;" alt="Step forward" src="qrc:/button/step"> "<em>Step forwar</em>d" – executes machine for a <a href="#setstep">specified</a> count of time units from the current configuration.<br>
+  </li>
+</ul>
+<p>If TuME is running on desktop platform, these items have equivalent buttons in <a href="#navpane">navigation pane</a>.<br>
+</p>
+
+
+<h3 id="emul_auto">Running in automatic mode</h3>
+<p>Running the machine in automatic mode allows You to test quickly, whether it is <i>applicable to the word on
+tape in initial configuration</i>, and acquire results of its execution.<br>
+</p>
+<ol>
+  <li>Ensure the machine is properly <a href="#edit">configured</a>, <a href="#edit_cmds">program</a> is entered and <a href="#edit_tape">tape</a> contains proper word. <br>
+  </li>
+  <li>Activate menu item "<a href="#item_start">Emulation &gt; Start</a>" (or press <img style="width: 16px; height: 16px;" alt="Run" src="qrc:/button/play"> button, if present).
+During the execution, most of the application functions are disabled.
+Execution will stop if there is no matching commands in the program or
+if execution time limit reached <sup>this feature is not yet implemented</sup>.</li>
+  <li>If execution hangs (maybe, same command is being chosen infinitely), You can always stop it by activating menu item "<a href="#item_pause">Emulation &gt; Pause</a>" (or pressing <img style="width: 16px; height: 16px;" alt="Pause" src="qrc:/button/pause"> button, if present).</li>
+</ol>
+<p>Execution sessions that are finished due to appearance of the <i>final state</i>
+in machine configuration are the only that considered successful.
+Information in the status bar can help You to determine execution
+status. If execution trace was not disabled at the moment of execution
+start, it will be available in the emulation screen after the execution
+is finished. </p>
+
+<h3 id="emul_sbs">Running in step-by-step mode</h3>
+<p>In step-by-step mode You can manually trace the execution, even if it is disabled. Be aware that You cannot enter this mode explicitly – machine always resides in it, except for the periods of automatic execution.
+Even when the machine is empty, it stays in step-by-step execution
+mode. There are two main actions to control execution&nbsp; in this
+mode: step forward (menu item "<a href="#item_stepfwd">Emulation &gt; Step forward</a>") and reset ("<a href="#item_reset">Emulation &gt; Reset</a>"). To execute machine in this mode, do the following:<br>
+</p>
+<ol>
+  <li>Optionally, change a step size (in machine time units) in the <a href="#setstep">"Stride size for step" number input field</a> at the navigation pane in "Emulation" section, if You are not satisfied with the default one, which is 1.</li>
+  <li>Optionally, change current machine state and / or currently observed symbol on tape in the <a href="#mon_row">monitoring row</a>.</li>
+  <li>Activate "<a href="#item_stepfwd">Emulation &gt; Step forward</a>" menu item (or press <img style="width: 16px; height: 16px;" alt="Step forward" src="qrc:/button/step">
+button, if present) one or more times. If You have already debugged
+programs, it might resemble You "Step over" debugger command.</li>
+  <li>Look at the monitoring row, execution trace (if not disabled) and status bar to see the results.</li>
+</ol>
+<p>These actions can be undertaken continuously, until You find that the program execution finished.<br>
+When machine execution finished, You can reset it to the most recent restore point by activating "<a href="#item_reset">Emulation &gt; Reset</a>" menu item (or pressing <img style="width: 16px; height: 16px;" alt="Stop / reset" src="qrc:/button/stop"> button, if present).<br>
+</p>
+<p>
+</p>
+
+<h2 id="tml">TML syntax</h2>
+<p><abbr>TML</abbr> stands for Turing machine Markup Language. It has
+nothing in common with the SGML and its derivatives. It is used for
+textual representation of TuME configuration and program, and is not
+knows to be used elsewhere.<br>
+The TML file consists of three types of lexical elements:</p>
+<ul>
+  <li><em>Directives</em>, that instruct TuME to set a particular machine property to a particular value. Their syntax is simple:
+    <div class="code">&lt;directive&gt; ::= &lt;directive-name&gt; ":" &lt;directive-value&gt;<br>
+&lt;directive-name&gt; ::= states | alphabet | state0 | state1 | empty | tape | offset<br>
+&lt;directive-value&gt; ::= &lt;single-value&gt; | &lt;directive-value&gt; "," &lt;single-value&gt;</div><br>
+    <code>&lt;single-value&gt;</code> is an arbitrary string of alphanumeric characters. Spaces withing strings allowed for <cite>symbol</cite> values (symbol set elements, tape symbols) but prohibited for <cite>state</cite> values.<br>
+    <code>":"</code> and <code>","</code> symbols allow arbitrary number of spaces or tabulations around them.<br>
+  </li>
+  <li><em>Commands</em>, that constitute machine's program. Their syntax is:<div class="code">&lt;command&gt; ::= &lt;condition&gt; "-&gt;" &lt;action&gt;<br>&lt;condition&gt; ::= &lt;single-state-value&gt; "(" &lt;single-symbol-value&gt; ")"<br>&lt;action&gt; ::= "(" &lt;single-symbol-value&gt; ")" &lt;movement-dir&gt; "." &lt;single-state-value&gt;<br>&lt;movement-dir&gt; ::= L | S | R</div><br><code>&lt;condition&gt;</code>
+is a combination of machine current state and observed symbol on the
+tape that are used to test the command for its applicability.<br>
+    <code>&lt;action&gt;</code> describes changes in machine that will come to power in case this command is selected.<br>
+    <code>&lt;single-state-value&gt;</code> is an arbitrary string of alphanumeric characters without spaces.<br><code>&lt;single-symbol-value&gt;</code> is an arbitrary string of alphanumeric characters.<br><code>&lt;movement-dir&gt;</code> value describes movement direction of the <cite>head</cite>: <span style="text-decoration: underline;">left</span> ("<code>L</code>"), <span style="text-decoration: underline;">right</span> ("<code>R</code>") or <span style="text-decoration: underline;">stand still</span> ("<code>S</code>").<br>
+    <code>"-&gt;"</code> symbol allow arbitrary number of spaces or tabulations around it.</li>
+  <li><em>Comments</em>, that allow author to leave notes in code.
+    <div class="code">&lt;comment&gt; ::= "#" &lt;text-line&gt;</div><br>
+    <code>&lt;text-line&gt;</code> is an arbitrary text ended with a newline symbol.</li>
+</ul>
+<p>Here is a sample TML code that, when executed, replaces all "<samp>0</samp>" symbols with "<samp>1</samp>" from the beginning of the tape until the first "<samp>1</samp>" is under machine's <cite>head</cite>:</p>
+<div class="code"># No arbitrary states - only initial and final<br><br># Valid arbitrary alphabet<br>alphabet: 1<br><br># Mandatory states<br>state0: Q0<br>state1: Q1<br><br># Empty symbol<br>empty: 0<br><br># Tape contents<br>tape:<br>0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1<br><br># Machine commands<br>Q1(0)-&gt;(1)R.Q1<br>Q1(1)-&gt;(1)S.Q0</div>
+<h2 id="lims">Limitations</h2>
+<p>As it was written in <a href="#intro">introduction</a>, Turing
+machine operates with an infinite tape. It is also well-known that
+computers operate with finite numbers located in finite memory. This
+limitation is especially sensible for mobile devices. TuME tape size is
+limited by amount of memory available for a user application on the target platform. Also, as far as TuME counts machine time and traces execution process, execution time is limited by the value <strong>2<sup>64</sup></strong>.
+It's a reasonable high value, but it's a divergence from formal
+definition given by A. Turing. That's why I'm not sure the application
+would fit for all tasks that engage Turing machines.</p>
+<p>That's all for now. Your bug reports about TuME are welcome (see below).<br>
+</p>
+<hr style="width: 100%; height: 2px;">
+<address>TuME v1.0 documentation. Copyright © 2011, Dmitriev K. S.<br>Send Your notes and bug reports to <span style="text-decoration: underline; color: blue;">tume@gmail.com</span>.<br></address>
+</body></html>
