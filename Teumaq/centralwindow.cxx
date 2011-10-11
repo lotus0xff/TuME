@@ -1,5 +1,4 @@
 #include "centralwindow.h"
-#include <QApplication>
 #include <QStringListModel>
 #include <QMessageBox>
 #include <QVBoxLayout>
@@ -12,6 +11,7 @@
 #include "tracetablemodel.h"
 #include "parser.h"
 #include "messages.h"
+#include "minibrowser.h"
 
 #include "ui_about.h"
 
@@ -656,11 +656,6 @@ void CentralWindow::on__uiCmdRem_clicked()
         _uiProgram->model()->removeRow(ilist.first().row());
 }
 
-void CentralWindow::on__actAbout_Qt_triggered()
-{
-    qobject_cast<QApplication*>(QApplication::instance())->aboutQt();
-}
-
 void CentralWindow::on__actDisLog_toggled(bool logOff)
 {
     if (!logOff)
@@ -679,4 +674,16 @@ void CentralWindow::on__actDisLog_toggled(bool logOff)
     QSizePolicy szpol = _uiTape->sizePolicy();
     szpol.setVerticalStretch(logOff ? 0 : 1);
     _uiTape->setSizePolicy(szpol);
+}
+
+void CentralWindow::on__actHelp_triggered()
+{
+    static MiniBrowser *mb = NULL;
+    if (!mb)
+    {
+        mb = new MiniBrowser("qrc:/help", this);
+        mb->setWindowTitle("TuME help browser");
+        mb->resize(width(), height());
+    }
+    mb->show();
 }

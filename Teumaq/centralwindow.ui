@@ -1082,13 +1082,6 @@
     <addaction name="separator"/>
     <addaction name="_actExit"/>
    </widget>
-   <widget class="QMenu" name="menuHelp">
-    <property name="title">
-     <string>Help</string>
-    </property>
-    <addaction name="_actAbout"/>
-    <addaction name="_actAbout_Qt"/>
-   </widget>
    <widget class="QMenu" name="menuEmulation">
     <property name="title">
      <string>Emulation</string>
@@ -1100,6 +1093,14 @@
     <addaction name="_actStepFwd"/>
     <addaction name="separator"/>
     <addaction name="_actDisLog"/>
+   </widget>
+   <widget class="QMenu" name="menuHelp">
+    <property name="title">
+     <string>Help</string>
+    </property>
+    <addaction name="_actHelp"/>
+    <addaction name="separator"/>
+    <addaction name="_actAbout"/>
    </widget>
    <addaction name="menuFile"/>
    <addaction name="menuEmulation"/>
@@ -1114,6 +1115,9 @@
    <property name="text">
     <string>New</string>
    </property>
+   <property name="shortcut">
+    <string>Ctrl+N</string>
+   </property>
   </action>
   <action name="_actOpen">
    <property name="icon">
@@ -1123,6 +1127,9 @@
    <property name="text">
     <string>Open</string>
    </property>
+   <property name="shortcut">
+    <string>Ctrl+O</string>
+   </property>
   </action>
   <action name="_actSave">
    <property name="icon">
@@ -1131,6 +1138,9 @@
    </property>
    <property name="text">
     <string>Save</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+S</string>
    </property>
   </action>
   <action name="_actSave_as">
@@ -1146,37 +1156,16 @@
    <property name="text">
     <string>E&amp;xit</string>
    </property>
+   <property name="shortcut">
+    <string>Ctrl+Q</string>
+   </property>
   </action>
   <action name="_actAbout">
    <property name="checkable">
     <bool>false</bool>
    </property>
-   <property name="icon">
-    <iconset resource="resources/rsrc.qrc">
-     <normaloff>:/action/help</normaloff>:/action/help</iconset>
-   </property>
    <property name="text">
     <string>About</string>
-   </property>
-  </action>
-  <action name="actStart">
-   <property name="text">
-    <string>Reset</string>
-   </property>
-  </action>
-  <action name="actPause">
-   <property name="text">
-    <string>Start</string>
-   </property>
-  </action>
-  <action name="actPause_2">
-   <property name="text">
-    <string>Pause</string>
-   </property>
-  </action>
-  <action name="actionStep_forward">
-   <property name="text">
-    <string>Step forward</string>
    </property>
   </action>
   <action name="_actReset">
@@ -1190,6 +1179,9 @@
    <property name="text">
     <string>Reset</string>
    </property>
+   <property name="shortcut">
+    <string>Ctrl+R</string>
+   </property>
   </action>
   <action name="_actStart">
    <property name="icon">
@@ -1198,6 +1190,9 @@
    </property>
    <property name="text">
     <string>Start</string>
+   </property>
+   <property name="shortcut">
+    <string>F9</string>
    </property>
   </action>
   <action name="_actPause">
@@ -1211,6 +1206,9 @@
    <property name="text">
     <string>Pause</string>
    </property>
+   <property name="shortcut">
+    <string>F10</string>
+   </property>
   </action>
   <action name="_actStepFwd">
    <property name="icon">
@@ -1220,10 +1218,8 @@
    <property name="text">
     <string>Step forward</string>
    </property>
-  </action>
-  <action name="_actAbout_Qt">
-   <property name="text">
-    <string>About Qt</string>
+   <property name="shortcut">
+    <string>F8</string>
    </property>
   </action>
   <action name="_actDisLog">
@@ -1236,6 +1232,24 @@
    </property>
    <property name="text">
     <string>Disable log</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+L</string>
+   </property>
+  </action>
+  <action name="_actHelp">
+   <property name="icon">
+    <iconset resource="resources/rsrc.qrc">
+     <normaloff>:/action/help</normaloff>:/action/help</iconset>
+   </property>
+   <property name="text">
+    <string>Help</string>
+   </property>
+   <property name="toolTip">
+    <string>Show help in internal browser</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+H</string>
    </property>
   </action>
  </widget>

@@ -63,9 +63,9 @@ private slots:
 
     void on__uiCmdRem_clicked();
 
-    void on__actAbout_Qt_triggered();
-
     void on__actDisLog_toggled(bool arg1);
+
+    void on__actHelp_triggered();
 
 private:
     void setupConnections();
