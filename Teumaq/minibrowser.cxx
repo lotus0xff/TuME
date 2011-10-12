@@ -16,7 +16,7 @@ MiniBrowser::MiniBrowser(const QString &url, QWidget *parent) :
     layout()->addWidget(m_browser);
 
     // Set up actions
-    m_toc = new QAction("Home", this);
+    m_toc = new QAction("Contents", this);
     connect(m_toc, SIGNAL(triggered()), m_browser, SLOT(home()));
     m_back = new QAction("Back", this);
     connect(m_back, SIGNAL(triggered()), m_browser, SLOT(backward()));

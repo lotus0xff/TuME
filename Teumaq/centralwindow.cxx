@@ -1,5 +1,4 @@
 #include "centralwindow.h"
-#include <QApplication>
 #include <QStringListModel>
 #include <QMessageBox>
 #include <QVBoxLayout>
@@ -199,7 +198,7 @@ void CentralWindow::about()
     QDialog *dlg = new QDialog(this);
     Ui::About decorator;
     decorator.setupUi(dlg);
-    dlg->show();
+    dlg->showMaximized();
 }
 
 
@@ -646,11 +645,6 @@ void CentralWindow::on__uiCmdRem_clicked()
     QModelIndexList ilist = _uiProgram->selectionModel()->selectedIndexes();
     if (!ilist.isEmpty())
         _uiProgram->model()->removeRow(ilist.first().row());
-}
-
-void CentralWindow::on__actAbout_Qt_triggered()
-{
-    qobject_cast<QApplication*>(QApplication::instance())->aboutQt();
 }
 
 void CentralWindow::on__actDisLog_toggled(bool logOff)

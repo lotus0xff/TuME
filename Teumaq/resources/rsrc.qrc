@@ -1,6 +1,6 @@
 <RCC>
     <qresource prefix="/machine">
-        <file alias="cursor">arrow_up_green.png</file>
+        <file alias="cursor">head.png</file>
     </qresource>
     <qresource prefix="/button">
         <file alias="pause">media_pause.png</file>

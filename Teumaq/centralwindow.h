@@ -60,7 +60,6 @@ private slots:
     void on__uiCmdApply_clicked();
     void on__uiCmdAdd_clicked();
     void on__uiCmdRem_clicked();
-    void on__actAbout_Qt_triggered();
     void on__actDisLog_toggled(bool arg1);
 
     // Misc.

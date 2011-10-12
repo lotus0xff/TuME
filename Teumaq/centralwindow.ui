@@ -1090,8 +1090,8 @@ command</string>
      <string>Help</string>
     </property>
     <addaction name="_actHelp"/>
+    <addaction name="separator"/>
     <addaction name="_actAbout"/>
-    <addaction name="_actAbout_Qt"/>
    </widget>
    <addaction name="menuFile"/>
    <addaction name="menuEmulation"/>
@@ -1221,14 +1221,6 @@ command</string>
    </property>
    <property name="text">
     <string>Step forward</string>
-   </property>
-   <property name="softKeyRole">
-    <enum>QAction::PositiveSoftKey</enum>
-   </property>
-  </action>
-  <action name="_actAbout_Qt">
-   <property name="text">
-    <string>About Qt</string>
    </property>
    <property name="softKeyRole">
     <enum>QAction::PositiveSoftKey</enum>
