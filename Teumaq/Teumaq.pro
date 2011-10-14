@@ -1,3 +1,16 @@
+symbian {
+  TARGET.UID3 = 0x200343E5
+
+  #DEPLOYMENT.installer_header=0xA000D7CE
+
+  vendorinfo = \
+  "%{\"Dmitriev K. S.\"}" \
+  ":\"Dmitriev K. S.\""
+
+  my_deployment.pkg_prerules = vendorinfo
+  DEPLOYMENT += my_deployment
+}
+
 SOURCES += main.cxx \
     machine.cxx \
     parser.cxx \
@@ -38,6 +51,11 @@ FORMS += centralwindow.ui \
     about.ui
 RESOURCES += resources/rsrc.qrc
 
+VERSION = 1.0
+
+# Please do not modify the following two lines. Required for deployment.
+include(deployment.pri)
+qtcAddDeployment()
 
 
 
