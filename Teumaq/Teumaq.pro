@@ -1,5 +1,5 @@
 symbian {
-  TARGET.UID3 = 0x200343E5
+  #TARGET.UID3 = 0x200343E5
 
   #DEPLOYMENT.installer_header=0xA000D7CE
 
